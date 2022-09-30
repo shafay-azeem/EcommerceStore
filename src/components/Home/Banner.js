@@ -6,11 +6,15 @@ import {
     Dimensions,
     Image,
     Button,
+    ImageBackground,
+    TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import Swiper from 'react-native-swiper';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import LinearGradient from 'react-native-linear-gradient';
 
 var { width } = Dimensions.get('window');
 
@@ -41,29 +45,51 @@ export default function Banner() {
                             height: width / 2,
                         }}>
                         {BannerData.map(item => {
+
+
                             return (
-                                <Image
+
+                                <ImageBackground
                                     key={item}
-                                    resizeMode="contain"
-                                    source={{ uri: item }}
-                                    style={styles.banner}
-                                />
+                                    resizeMode="cover"
+                                    // source={{ uri: item }}
+                                    style={styles.banner}>
+                                    <Text style={styles.text}>New Arrival</Text>
+                                    <Text style={styles.saletext}>SUMMER SALE</Text>
+
+
+                                </ImageBackground>
+
+
+
+
                             );
                         })}
 
-
                     </Swiper>
                     <View style={{ height: 20 }}></View>
-                    <Button style={{ position: "absolute", right: "40%" }}
-                        onPress={{}}
+                    {/* 
+                    <TouchableOpacity>
+                        <LinearGradient color={['#FFA985 ', '#FF5035',]}>
+                            <Text>
+                                SHOP NOW
+                            </Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+
+                    <Button
+                        // style={{ backgroundImage: `linear-gradient(to right, rgba(0, 224, 255, 1), rgba(0, 133, 255, 1))`, }}
+                        // onPress={onPressLearnMore}
                         title="Learn More"
-                        color="#841584"
+
                         accessibilityLabel="Learn more about this purple button"
-                    />
+                    /> */}
+
                 </View>
 
+
             </View>
-        </ScrollView>
+        </ScrollView >
     );
 }
 
@@ -83,4 +109,21 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         marginHorizontal: 20,
     },
+    text: {
+        color: "#2B2B2B",
+        position: "absolute",
+        left: wp(10),
+        top: hp(5),
+        fontWeight: "600",
+        fontSize: 13,
+        lineHeight: 14
+    },
+    saletext: {
+        color: "#FF5035",
+        fontWeight: "600",
+        position: "absolute",
+        left: wp(10),
+        top: hp(7),
+        fontSize: 18,
+    }
 });

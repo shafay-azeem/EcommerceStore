@@ -4,8 +4,6 @@ import {
   View,
   ScrollView,
   Dimensions,
-  Image,
-  Button,
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
@@ -26,9 +24,9 @@ export default function Banner() {
 
   useEffect(() => {
     setBannerData([
-      'https://img.freepik.com/free-psd/online-shopping-with-laptop-mockup-template-shopping-elements_1150-38886.jpg?w=740&t=st=1649620293~exp=1649620893~hmac=5c9107ea2ea3ce12882a18e099701bde00f1786252d93ed6bfd1f73eb1404733',
-      'https://img.freepik.com/free-psd/online-shopping-with-mobile-shopping-elements-mockup-template_1150-38858.jpg?w=740&t=st=1649620328~exp=1649620928~hmac=94235b42c77689d7b61f983bdb82f5dd9d16fb91c9e08dbda78b56ff443f08a4',
-      'https://img.freepik.com/free-psd/blank-screen-smart-phone-computer-mockup-online-shop-concept_1150-39228.jpg?t=st=1649620352~exp=1649620952~hmac=cca3bd0f238edf83c96307a86ed0bff0b17d78cfa082ff215a6304b228a9e7cd&w=740',
+      {uri: require('./images/3.jpg')},
+      {uri: require('./images/2.jpg')},
+      {uri: require('./images/1.jpg')},
     ]);
     return () => {
       setBannerData([]);
@@ -43,6 +41,8 @@ export default function Banner() {
             showButtons={false}
             // autoplay={true}
             // autoplayTimeout={4}
+            dotColor="#F8F0E3"
+            activeDotColor="#FF5035"
             style={{
               height: width / 2,
             }}>
@@ -51,7 +51,7 @@ export default function Banner() {
                 <ImageBackground
                   key={item}
                   resizeMode="cover"
-                  //   source={{uri: item}}
+                  source={item.uri}
                   style={styles.banner}>
                   <Text style={styles.text}>New Arrival</Text>
                   <Text style={styles.saletext}>SUMMER SALE</Text>

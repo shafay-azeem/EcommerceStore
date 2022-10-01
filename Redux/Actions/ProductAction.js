@@ -5,15 +5,21 @@ export const getProduct = () => async (dispatch) => {
         dispatch({
             type: "allProductRequest",
         });
-        const { data } = await axios.get('http://localhost:5000/api/ecommerce/products');
+        const { data } = await axios.get('https://ecommercebackend-api.herokuapp.com/api/ecommerce/products');
+
         dispatch({
+
             type: "allProductSuccess",
             payload: data,
+
         });
+
     } catch (error) {
+        console.log(error, 'eee')
         dispatch({
             type: "allProductFail",
-            payload: error.response.data.message,
+            payload: error
         });
     }
+
 };

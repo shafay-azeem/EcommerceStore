@@ -19,7 +19,7 @@ const HomeProduct = () => {
             alert(error)
         }
         dispatch(getProduct())
-    }, [dispatch, error])
+    }, [dispatch])
 
     console.log(products, 'kkkk')
     return (
@@ -29,7 +29,7 @@ const HomeProduct = () => {
                 <View style={styles.container}>
                     <View style={styles.productCard}>
                         {products &&
-                            products.map(product => (
+                            products.map((product) => (
                                 <ProductCard
                                     key={product._id}
                                     products={product}

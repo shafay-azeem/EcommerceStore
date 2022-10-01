@@ -9,7 +9,8 @@ export const productsReducer = createReducer(initialState, {
         state.loading = true;
     },
     allProductSuccess: (state, action) => {
-        (state.loading = false),
+        console.log(action.payload.products, 'action'),
+            (state.loading = false),
             (state.products = action.payload.products),
             (state.productsCount = action.payload.productsCount);
         state.resultPerPage = action.payload.resultPerPage;

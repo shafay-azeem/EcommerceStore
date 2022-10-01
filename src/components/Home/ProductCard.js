@@ -15,7 +15,7 @@ const ProductCard = ({products}) => {
   return (
     <View style={styles.ProductCard}>
       <Image source={{uri: products.images[0].url}} style={styles.image} />
-      <Text>{products.name}</Text>
+      <Text style={styles.ProductCardName}>{products.name}</Text>
     </View>
   );
 };
@@ -25,10 +25,10 @@ export default ProductCard;
 const styles = StyleSheet.create({
   ProductCard: {
     width: width / 2 - 30,
-    height: width / 1.7,
-    borderRadius: 10,
-    elevation: 8,
-    backgroundColor: '#e5e5e5',
+    height: width / 1.8,
+    borderRadius: 2,
+    elevation: 2,
+    backgroundColor: '#F3F3F3',
     flexWrap: 'wrap',
     margin: 10,
   },
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: width / 2 - 60,
     resizeMode: 'contain',
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
+    borderTopRightRadius: 1,
+    borderTopLeftRadius: 1,
   },
   outOfStock: {
     width: 50,
@@ -49,5 +49,10 @@ const styles = StyleSheet.create({
     left: -10,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  ProductCardName: {
+    color: '#2B2B2B',
+    paddingVertical: 5,
+    textAlign: 'left',
   },
 });

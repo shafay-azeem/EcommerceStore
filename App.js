@@ -5,13 +5,19 @@ import Banner from './src/components/Home/Banner'
 import HomeScreen from './src/screens/HomeScreen'
 import { Provider } from 'react-redux'
 import Store from './Redux/Store'
+import { NavigationContainer } from '@react-navigation/native'
+import Main from "./Navigations/Main"
+
 
 
 export default function App() {
   return (
     <Provider store={Store}>
-      <Header></Header>
-      <HomeScreen></HomeScreen>
+      <NavigationContainer>
+        <Main />
+      </NavigationContainer>
+      {/* <Header></Header>
+      <HomeScreen></HomeScreen> */}
     </Provider>
 
   )

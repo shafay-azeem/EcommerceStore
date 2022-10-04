@@ -8,6 +8,7 @@ import CartScreen from '../src/screens/CartScreen';
 import WishListScreen from '../src/screens/WishListScreen';
 import DrawerItems from '../src/components/Layout/DrawerItems';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {max} from 'react-native-reanimated';
 
 const Main = () => {
   // const Stack = createNativeStackNavigator()
@@ -22,6 +23,9 @@ const Main = () => {
         drawerLabelStyle: {
           marginLeft: -25,
           fontSize: 15,
+        },
+        drawerStyle: {
+          width: '100%',
         },
       }}
       drawerContent={props => <DrawerItems {...props} />}>

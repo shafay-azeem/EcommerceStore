@@ -1,4 +1,11 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -7,40 +14,44 @@ import React from 'react';
 
 export default function DrawerItems(props) {
   return (
-    <View
-      style={{
-        flex: 1,
-        paddingVertical: 20,
-        margin: 0,
-      }}>
-      <Image
-        source={require('../../assets/BottomTab/user.jpg')}
+    <ImageBackground
+      source={require('../../assets/BottomTab/drawerBg.png')}
+      style={{flex: 1}}>
+      <View
         style={{
-          width: 60,
-          height: 60,
-          borderRadius: 120,
-          marginLeft: 10,
-        }}
-      />
-      <Text style={{color: '#333', fontSize: 16, paddingLeft: 10}}>
-        Demo user
-      </Text>
-
-      <DrawerContentScrollView {...props}>
-        <View
+          flex: 1,
+          paddingVertical: 20,
+          margin: 0,
+        }}>
+        <Image
+          source={require('../../assets/BottomTab/user.jpg')}
           style={{
-            paddingTop: 10,
-          }}>
-          <DrawerItemList {...props} />
-        </View>
-      </DrawerContentScrollView>
-
-      <View>
+            width: 60,
+            height: 60,
+            borderRadius: 120,
+            marginLeft: 10,
+          }}
+        />
         <Text style={{color: '#333', fontSize: 16, paddingLeft: 10}}>
-          Log Out
+          Demo user
         </Text>
+
+        <DrawerContentScrollView {...props}>
+          <View
+            style={{
+              paddingTop: 10,
+            }}>
+            <DrawerItemList {...props} />
+          </View>
+        </DrawerContentScrollView>
+
+        <View>
+          <Text style={{color: '#333', fontSize: 16, paddingLeft: 10}}>
+            Log Out
+          </Text>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 

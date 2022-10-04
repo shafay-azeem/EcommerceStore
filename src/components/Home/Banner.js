@@ -9,24 +9,24 @@ import {
 } from 'react-native';
 import React from 'react';
 import Swiper from 'react-native-swiper';
-import {useState} from 'react';
-import {useEffect} from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
 
-var {width} = Dimensions.get('window');
+var { width } = Dimensions.get('window');
 
 export default function Banner() {
   const [BannerData, setBannerData] = useState([]);
 
   useEffect(() => {
     setBannerData([
-      {uri: require('./images/3.jpg')},
-      {uri: require('./images/2.jpg')},
-      {uri: require('./images/1.jpg')},
+      { uri: require('./images/3.jpg') },
+      { uri: require('./images/2.jpg') },
+      { uri: require('./images/1.jpg') },
     ]);
     return () => {
       setBannerData([]);

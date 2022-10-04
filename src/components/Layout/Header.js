@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
 import {
@@ -14,9 +14,9 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-var {width} = Dimensions.get('window');
+var { width } = Dimensions.get('window');
 
-const Header = ({navigation}) => {
+const Header = ({ navigation }) => {
   return (
     <View style={styles.headerMain}>
       <View style={styles.headerFlex}>
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingVertical: 10,
     paddingHorizontal: 10,
+
   },
   headerFlex: {
     flexDirection: 'row',

@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
         width: width,
         padding: 10,
         marginVertical: 10,
+        backgroundColor: '#fff'
         // marginBottom: width / 6 - 5,
     },
     productCard: {

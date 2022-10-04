@@ -5,6 +5,7 @@ import WishListScreen from '../src/screens/WishListScreen'
 import CartScreen from '../src/screens/CartScreen.js'
 import ProfileScreen from '../src/screens/ProfileScreen.js'
 import React from 'react'
+
 import { Image, View, StyleSheet } from 'react-native';
 
 
@@ -22,7 +23,7 @@ function Tabs() {
             }}
             style={styles.bottomTabs}>
             <Tab.Screen
-                name="Home" component={HomeScreen}
+                name="Home2" component={HomeScreen}
                 options={{
 
                     tabBarIcon: ({ focused }) => (

@@ -5,14 +5,15 @@ import HomeProduct from '../components/Home/HomeProduct'
 import Header from "../components/Layout/Header"
 
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     return (
         <ScrollView>
-            <View>
-                <Header></Header>
-                <Banner></Banner>
-                <HomeProduct></HomeProduct>
-            </View>
+
+            <Header navigation={navigation}></Header>
+
+            <Banner></Banner>
+            <HomeProduct></HomeProduct>
+
         </ScrollView>
     )
 }

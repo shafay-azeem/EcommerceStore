@@ -20,7 +20,7 @@ const Header = ({ navigation }) => {
   return (
     <View style={styles.headerMain}>
       <View style={styles.headerFlex}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Icon name="menu-outline" size={35} color="#FF5035" />
         </TouchableOpacity>
         <TextInput

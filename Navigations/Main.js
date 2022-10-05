@@ -1,6 +1,6 @@
-import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import Tabs from './Tabs';
 import ProductScreen from '../src/screens/ProductScreen';
 import ProfileScreen from '../src/screens/ProfileScreen';
@@ -8,7 +8,7 @@ import CartScreen from '../src/screens/CartScreen';
 import WishListScreen from '../src/screens/WishListScreen';
 import DrawerItems from '../src/components/Layout/DrawerItems';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {max} from 'react-native-reanimated';
+import { max } from 'react-native-reanimated';
 
 const Main = () => {
   // const Stack = createNativeStackNavigator()
@@ -18,7 +18,7 @@ const Main = () => {
       initialRouteName="Auth"
       screenOptions={{
         headerShown: false,
-        drawerActiveBackgroundColor: '#3BB77E',
+        drawerActiveBackgroundColor: "#FF5035",
         drawerActiveTintColor: '#fff',
         drawerLabelStyle: {
           marginLeft: -25,
@@ -28,12 +28,14 @@ const Main = () => {
           width: '100%',
         },
       }}
+      ///...props pass as object to DrawerItems Component
       drawerContent={props => <DrawerItems {...props} />}>
       <Drawer.Screen
         name="Home"
         component={Tabs}
         options={{
-          drawerIcon: ({color}) => (
+
+          drawerIcon: ({ color }) => (
             <Icon name="home-outline" size={25} color={color} />
           ),
         }}
@@ -42,7 +44,7 @@ const Main = () => {
         name="Products"
         component={ProductScreen}
         options={{
-          drawerIcon: ({color}) => (
+          drawerIcon: ({ color }) => (
             <Icon name="grid-outline" size={25} color={color} />
           ),
         }}
@@ -51,7 +53,8 @@ const Main = () => {
         name="wishlist"
         component={WishListScreen}
         options={{
-          drawerIcon: ({color}) => (
+
+          drawerIcon: ({ color }) => (
             <Icon name="heart-outline" size={25} color={color} />
           ),
         }}
@@ -60,7 +63,7 @@ const Main = () => {
         name="cart"
         component={CartScreen}
         options={{
-          drawerIcon: ({color}) => (
+          drawerIcon: ({ color }) => (
             <Icon name="cart-outline" size={25} color={color} />
           ),
         }}
@@ -69,7 +72,7 @@ const Main = () => {
         name="profile"
         component={ProfileScreen}
         options={{
-          drawerIcon: ({color}) => (
+          drawerIcon: ({ color }) => (
             <Icon name="people-outline" size={25} color={color} />
           ),
         }}

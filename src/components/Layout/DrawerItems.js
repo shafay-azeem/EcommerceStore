@@ -16,13 +16,13 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {DrawerActions} from '@react-navigation/native';
+import { DrawerActions } from '@react-navigation/native';
 
 export default function DrawerItems(props) {
   return (
     <ImageBackground
       source={require('../../assets/BottomTab/drawerBg.png')}
-      style={{flex: 1}}>
+      style={{ flex: 1 }}>
       <View
         style={{
           flex: 1,
@@ -39,21 +39,24 @@ export default function DrawerItems(props) {
           }}
         />
 
-        <Text style={{color: '#333', fontSize: 16, paddingLeft: 10}}>
+        <Text style={{ color: '#333', fontSize: 16, paddingLeft: 10 }}>
           Demo user
         </Text>
+
+
 
         <DrawerContentScrollView {...props}>
           <View
             style={{
               paddingTop: 10,
             }}>
-            <DrawerItemList {...props} />
+            <DrawerItemList {...props}
+            />
           </View>
         </DrawerContentScrollView>
 
         <View>
-          <Text style={{color: '#333', fontSize: 16, paddingLeft: 10}}>
+          <Text style={{ color: '#333', fontSize: 16, paddingLeft: 10 }}>
             Log Out
           </Text>
         </View>

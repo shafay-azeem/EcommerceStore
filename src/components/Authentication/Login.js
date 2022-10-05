@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 var { width } = Dimensions.get('window');
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
@@ -9,6 +9,10 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 
 const Login = () => {
+
+    const [passwordVisible, setPasswordVisible] = useState(true)
+
+
     return (
         <View style={styles.container}>
             <View style={styles.LoginHeader}>
@@ -45,12 +49,20 @@ const Login = () => {
                 </View>
                 <View style={styles.relative}>
                     <Icon name="lock-closed-outline" size={23} style={styles.icon} />
+                    <TouchableOpacity style={{
+                        position: 'absolute',
+                        top: 22,
+                        left: width - 80,
+                        zIndex: 10,
+                    }} onPress={() => setPasswordVisible(!passwordVisible)}>
+                        <Icon name="eye" size={23} color={'#000000'} />
+                    </TouchableOpacity>
                     <TextInput
                         placeholder="Enter your password"
                         placeholderTextColor="#4F4F4F"
                         style={styles.inputBox}
                         textContentType="password"
-                        secureTextEntry={true}
+                        secureTextEntry={passwordVisible}
                     // value={email}
                     // onChangeText={setEmail}
                     />

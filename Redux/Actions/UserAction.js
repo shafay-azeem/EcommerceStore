@@ -39,3 +39,14 @@ export const loadUser = () => async dispatch => {
     }
 };
 
+// Log out User
+
+export const logOutUser = () => async dispatch => {
+    try {
+        await axios.get(`https://ecommercebackend-api.herokuapp.com/api/user/logout`);
+        dispatch({ type: 'userLogOutSuccess' });
+    } catch (error) {
+        dispatch({ type: 'userLogOutFailed', payload: error.response.data.message });
+    }
+};
+

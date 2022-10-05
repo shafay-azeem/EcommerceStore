@@ -77,6 +77,28 @@ const SignUp = ({ navigation }) => {
                     // onChangeText={setEmail}
                     />
 
+                    <View style={styles.relative}>
+
+                        <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center' }}>
+
+                            <Image source={require('../../assets/BottomTab/user.jpg')}
+                                style={{
+                                    width: 40,
+                                    height: 40,
+                                    borderRadius: 60,
+                                    resizeMode: 'contain',
+                                    borderWidth: 1,
+                                    borderColor: '#4F4F4F'
+                                }}></Image>
+                            <TouchableOpacity>
+                                <View style={{ marginLeft: 10, height: 50, width: width * 1 - 95, backgroundColor: '#F3F3F3', textAlign: 'center', justifyContent: 'center', alignItems: 'center', borderRadius: 9 }}>
+                                    <Text style={{ color: "#4F4F4F", fontSize: 15 }}>Upload Your Image</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+
+
+                    </View>
                     <Text
                         style={{
                             textAlign: 'center',

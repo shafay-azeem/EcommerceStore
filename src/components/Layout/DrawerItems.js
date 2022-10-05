@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   ImageBackground,
+  Alert,
 } from 'react-native';
 import {
   DrawerContentScrollView,
@@ -17,10 +18,21 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { DrawerActions } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOutUser } from '../../../Redux/Actions/UserAction';
 
 export default function DrawerItems(props) {
-  const { user } = useSelector((state) => state.user)
+  const dispatch = useDispatch()
+  const { user, error } = useSelector((state) => state.user)
+
+  const logOut = () => {
+    dispatch(logOutUser())
+    if (error) {
+      alert(error)
+    }
+    alert("Log Out Successfully")
+
+  }
   return (
     <ImageBackground
       source={require('../../assets/BottomTab/drawerBg.png')}
@@ -57,15 +69,19 @@ export default function DrawerItems(props) {
           </View>
         </DrawerContentScrollView>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginBottom: 40 }}>
-          <TouchableOpacity>
+        <TouchableOpacity onPress={logOut}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginBottom: 40 }}>
+
+
             <Image
               source={require("../../assets/BottomTab/signout.png")}></Image>
-          </TouchableOpacity>
-          <Text style={{ color: '#333', fontSize: 16, paddingLeft: 10 }}>
-            Sign Out
-          </Text>
-        </View>
+
+            <Text style={{ color: '#333', fontSize: 16, paddingLeft: 10 }}>
+              Sign Out
+            </Text>
+
+          </View>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );

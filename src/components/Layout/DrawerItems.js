@@ -11,6 +11,12 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import React from 'react';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import {DrawerActions} from '@react-navigation/native';
 
 export default function DrawerItems(props) {
   return (
@@ -32,6 +38,7 @@ export default function DrawerItems(props) {
             marginLeft: 10,
           }}
         />
+
         <Text style={{color: '#333', fontSize: 16, paddingLeft: 10}}>
           Demo user
         </Text>

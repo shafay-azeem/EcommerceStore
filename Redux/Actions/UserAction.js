@@ -50,3 +50,26 @@ export const logOutUser = () => async dispatch => {
     }
 };
 
+// Registration User
+export const register = (name, email, password, avatar) => async dispatch => {
+    try {
+        dispatch({ type: 'userCreateRequest' });
+
+        const { data } = await axios.post(
+            `https://ecommercebackend-api.herokuapp.com/api/user/registration`,
+            { name, email, password, avatar },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            },
+        );
+        dispatch({ type: 'userCreateSuccess', payload: data.user });
+    } catch (error) {
+        dispatch({
+            type: 'userCreateFail',
+            payload: error.response.data.message,
+        });
+    }
+};
+

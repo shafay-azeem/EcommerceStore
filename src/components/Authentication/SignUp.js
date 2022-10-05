@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 var { width } = Dimensions.get('window');
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
@@ -7,10 +7,45 @@ import {
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
+import ImagePicker from 'react-native-image-crop-picker';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../../../Redux/Actions/UserAction';
 const SignUp = ({ navigation }) => {
+    const dispatch = useDispatch()
+    const { error, loading, isAuthenticated } = useSelector(
+        (state) => state.user
+    );
     const [passwordVisible, setPasswordVisible] = useState(true)
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [avatar, setAvatar] = useState(
+        'https://mern-nest-ecommerce.herokuapp.com/profile.png',
+    );
 
+    const uploadImage = () => {
+        ImagePicker.openPicker({
+            width: 300,
+            height: 400,
+            cropping: true
+        }).then(image => {
+            console.log(image);
+            setAvatar(image.path)
+        });
+    }
+    const registerUser = () => {
+        dispatch(register(name, email, password, avatar))
+    }
+    useEffect(() => {
+        if (error) {
+            alert(error);
+            // dispatch({ type: "clearErrors" });
+        }
 
+        if (isAuthenticated) {
+            alert("User create Done!")
+        }
+    }, [dispatch, error, alert, isAuthenticated]);
     return (
         <View style={styles.container}>
             <View style={styles.LoginHeader}>
@@ -41,8 +76,8 @@ const SignUp = ({ navigation }) => {
                         style={styles.inputBox}
                         textContentType="name"
 
-                    // value={email}
-                    // onChangeText={setEmail}
+                        value={name}
+                        onChangeText={setName}
                     />
                 </View>
                 <View style={styles.relative}>
@@ -53,8 +88,8 @@ const SignUp = ({ navigation }) => {
                         style={styles.inputBox}
                         textContentType="emailAddress"
                         keyboardType="email-address"
-                    // value={email}
-                    // onChangeText={setEmail}
+                        value={email}
+                        onChangeText={setEmail}
                     />
                 </View>
                 <View style={styles.relative}>
@@ -73,15 +108,16 @@ const SignUp = ({ navigation }) => {
                         style={styles.inputBox}
                         textContentType="password"
                         secureTextEntry={passwordVisible}
-                    // value={email}
-                    // onChangeText={setEmail}
+                        value={password}
+                        onChangeText={setPassword}
                     />
 
                     <View style={styles.relative}>
 
                         <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center' }}>
 
-                            <Image source={require('../../assets/BottomTab/user.jpg')}
+                            <Image
+                                source={{ uri: avatar }}
                                 style={{
                                     width: 40,
                                     height: 40,
@@ -90,7 +126,8 @@ const SignUp = ({ navigation }) => {
                                     borderWidth: 1,
                                     borderColor: '#4F4F4F'
                                 }}></Image>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={uploadImage}>
                                 <View style={{ marginLeft: 10, height: 50, width: width * 1 - 95, backgroundColor: '#F3F3F3', textAlign: 'center', justifyContent: 'center', alignItems: 'center', borderRadius: 9 }}>
                                     <Text style={{ color: "#4F4F4F", fontSize: 15 }}>Upload Your Image</Text>
                                 </View>
@@ -137,7 +174,7 @@ const SignUp = ({ navigation }) => {
 
                     </View>
 
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={registerUser} >
                         <LinearGradient
                             colors={['#FFA985', '#FF5035']}
                             style={styles.linearGradient}>

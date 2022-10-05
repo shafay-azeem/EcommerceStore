@@ -55,9 +55,13 @@ export default function DrawerItems(props) {
           </View>
         </DrawerContentScrollView>
 
-        <View>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 25, marginBottom: 40 }}>
+          <TouchableOpacity>
+            <Image
+              source={require("../../assets/BottomTab/signout.png")}></Image>
+          </TouchableOpacity>
           <Text style={{ color: '#333', fontSize: 16, paddingLeft: 10 }}>
-            Log Out
+            Sign Out
           </Text>
         </View>
       </View>

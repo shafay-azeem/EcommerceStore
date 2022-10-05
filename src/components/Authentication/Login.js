@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 var { width } = Dimensions.get('window');
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
@@ -7,13 +7,31 @@ import {
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
+import { userLogin } from '../../../Redux/Actions/UserAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Login = ({ navigation }) => {
+    const dispatch = useDispatch();
+
+    const { error, loading, isAuthenticated } = useSelector(state =>
+        state.user
+    )
 
     const [passwordVisible, setPasswordVisible] = useState(true)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const loginSubmit = () => {
+        dispatch(userLogin(email, password))
+    }
+    useEffect(() => {
+        if (error) {
+            alert(error);
+        }
+        if (isAuthenticated) {
+            alert("Welcome To Ecommerce!")
+        }
+    }, [dispatch, error, alert, isAuthenticated]);
 
     return (
         <View style={styles.container}>
@@ -65,8 +83,8 @@ const Login = ({ navigation }) => {
                         style={styles.inputBox}
                         textContentType="password"
                         secureTextEntry={passwordVisible}
-                    // value={email}
-                    // onChangeText={setEmail}
+                        value={password}
+                        onChangeText={setPassword}
                     />
 
                     <Text
@@ -117,7 +135,7 @@ const Login = ({ navigation }) => {
 
                     </View>
 
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={loginSubmit} >
                         <LinearGradient
                             colors={['#FFA985', '#FF5035']}
                             style={styles.linearGradient}>

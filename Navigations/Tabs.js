@@ -7,11 +7,14 @@ import ProfileScreen from '../src/screens/ProfileScreen.js'
 import React from 'react'
 
 import { Image, View, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 
 
 const Tab = createBottomTabNavigator();
 
 function Tabs() {
+    const { user } = useSelector((state) => state.user)
+    console.log(user)
     return (
         <Tab.Navigator
             initialRouteName="Home"

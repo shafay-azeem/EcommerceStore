@@ -17,8 +17,10 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { DrawerActions } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 export default function DrawerItems(props) {
+  const { user } = useSelector((state) => state.user)
   return (
     <ImageBackground
       source={require('../../assets/BottomTab/drawerBg.png')}
@@ -40,7 +42,7 @@ export default function DrawerItems(props) {
         />
 
         <Text style={{ color: '#333', fontSize: 16, paddingLeft: 10 }}>
-          Demo user
+          {user.name}
         </Text>
 
 

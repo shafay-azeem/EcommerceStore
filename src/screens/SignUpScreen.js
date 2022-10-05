@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import SignUp from "../components/Authentication/SignUp.js"
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ navigation }) => {
     return (
         <View>
-            <Text>SignUpScreen</Text>
+
+            <SignUp navigation={navigation}></SignUp>
         </View>
     )
 }

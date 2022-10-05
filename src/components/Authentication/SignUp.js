@@ -7,12 +7,8 @@ import {
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
-
-const Login = ({ navigation }) => {
-
+const SignUp = ({ navigation }) => {
     const [passwordVisible, setPasswordVisible] = useState(true)
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
 
 
     return (
@@ -25,7 +21,7 @@ const Login = ({ navigation }) => {
                         color: '#FF5035',
                         textAlign: 'center'
                     }}>
-                    Welcome!
+                    Lets Get Started
                 </Text>
                 <Text
                     style={{
@@ -33,10 +29,22 @@ const Login = ({ navigation }) => {
                         color: '#4F4F4F',
                         textAlign: 'center'
                     }}>
-                    Enter your data to continue
+                    Sign up and we will continue
                 </Text>
             </View>
             <View style={styles.LoginBox}>
+                <View style={styles.relative}>
+                    <Icon name="person-circle-outline" size={25} style={styles.icon} />
+                    <TextInput
+                        placeholder="Enter your name"
+                        placeholderTextColor="#4F4F4F"
+                        style={styles.inputBox}
+                        textContentType="name"
+
+                    // value={email}
+                    // onChangeText={setEmail}
+                    />
+                </View>
                 <View style={styles.relative}>
                     <Icon name="mail-open-outline" size={23} style={styles.icon} />
                     <TextInput
@@ -45,8 +53,8 @@ const Login = ({ navigation }) => {
                         style={styles.inputBox}
                         textContentType="emailAddress"
                         keyboardType="email-address"
-                        value={email}
-                        onChangeText={setEmail}
+                    // value={email}
+                    // onChangeText={setEmail}
                     />
                 </View>
                 <View style={styles.relative}>
@@ -69,16 +77,6 @@ const Login = ({ navigation }) => {
                     // onChangeText={setEmail}
                     />
 
-                    <Text
-                        style={{
-                            textAlign: 'right',
-                            color: '#4F4F4F',
-                            fontSize: 14,
-                        }}
-                    // onPress={() => navigation.navigate("Forgot")}
-                    >
-                        Forgot Password ?
-                    </Text>
                     <Text
                         style={{
                             textAlign: 'center',
@@ -122,7 +120,7 @@ const Login = ({ navigation }) => {
                             colors={['#FFA985', '#FF5035']}
                             style={styles.linearGradient}>
 
-                            <Text style={{ color: '#fff', fontSize: 18 }}>Sign In</Text>
+                            <Text style={{ color: '#fff', fontSize: 18 }}>Sign Up</Text>
 
                         </LinearGradient>
                     </TouchableOpacity>
@@ -139,9 +137,9 @@ const Login = ({ navigation }) => {
                             color: '#4F4F4F',
                             fontSize: 14,
                         }}>
-                        Don't have any account ?
+                        Already Have any acount ?
                     </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                         <Text
                             style={{
                                 fontSize: 14,
@@ -149,7 +147,7 @@ const Login = ({ navigation }) => {
                                 paddingRight: 15,
                             }}>
                             {' '}
-                            Sign Up
+                            Sign in
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -159,7 +157,7 @@ const Login = ({ navigation }) => {
     )
 }
 
-export default Login
+export default SignUp
 
 const styles = StyleSheet.create({
     container: {
@@ -193,7 +191,7 @@ const styles = StyleSheet.create({
         color: '#4F4F4F',
     },
     LoginBox: {
-        marginTop: width / 4,
+        marginTop: width / 6,
     },
     Button: {
         alignItems: 'center',

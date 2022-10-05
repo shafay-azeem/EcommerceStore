@@ -3,12 +3,13 @@ import React from 'react'
 import Login from "../components/Authentication/Login.js"
 
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
     return (
         <ScrollView
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}>
-            <Login></Login>
+            <Login navigation={navigation}></Login>
+
         </ScrollView>
     )
 }

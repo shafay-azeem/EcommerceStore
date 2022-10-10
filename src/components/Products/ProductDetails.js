@@ -1,14 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const AuthScreen = ({navigation}) => {
+const ProductDetails = ({route, navigation}) => {
   return (
     <View>
-      <Text onPress={() => navigation.navigate('Home')}>AuthScreen</Text>
+      <Text>{route.params?.item.name}</Text>
     </View>
   );
 };
 
-export default AuthScreen;
+export default ProductDetails;
 
 const styles = StyleSheet.create({});

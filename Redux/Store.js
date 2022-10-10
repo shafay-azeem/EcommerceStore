@@ -1,11 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { productsReducer } from "./Reducers/ProductReduer";
-import { userReducer } from "./Reducers/UserReducer";
+import {configureStore} from '@reduxjs/toolkit';
+import {productsReducer} from './Reducers/ProductReduer';
+import {forgotPasswordReducer, userReducer} from './Reducers/UserReducer';
 
 const Store = configureStore({
-    reducer: {
-        products: productsReducer,
-        user: userReducer
-    }
-})
-export default Store
+  reducer: {
+    products: productsReducer,
+    user: userReducer,
+    forgotPassword: forgotPasswordReducer,
+  },
+});
+export default Store;

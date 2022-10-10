@@ -1,56 +1,46 @@
-import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
-import ProductCard from "../Home/ProductCard"
-var { width } = Dimensions.get('window');
+import {Dimensions, ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect} from 'react';
+import ProductCard from '../Home/ProductCard';
+var {width} = Dimensions.get('window');
 import {
-    widthPercentageToDP as wp,
-    heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-const HomeProduct = ({ products }) => {
+const HomeProduct = ({products, navigation}) => {
+  return (
+    <>
+      <View style={styles.container}>
+        <View style={styles.productCard}>
+          {products &&
+            products.map(product => (
+              <ProductCard
+                key={product._id}
+                products={product}
+                navigation={navigation}
+              />
+            ))}
+        </View>
+      </View>
+    </>
+  );
+};
 
-    return (
-        <>
-
-
-
-            <View style={styles.container}>
-                <View style={styles.productCard}>
-                    {products &&
-                        products.map((product) => (
-                            <ProductCard
-                                key={product._id}
-                                products={product}
-                            // navigation={navigation}
-                            />
-                        ))}
-                </View>
-            </View>
-
-
-        </>
-
-
-
-
-    )
-}
-
-export default HomeProduct
+export default HomeProduct;
 
 const styles = StyleSheet.create({
-    container: {
-        width: width,
-        padding: 10,
-        marginVertical: 10,
-        backgroundColor: '#fff',
-        marginBottom: width / 6 - 5,
-    },
-    productCard: {
-        width: width * 1 - 10,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-})
+  container: {
+    width: width,
+    padding: 10,
+    marginVertical: 10,
+    backgroundColor: '#fff',
+    marginBottom: width / 6 - 5,
+  },
+  productCard: {
+    width: width * 1 - 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

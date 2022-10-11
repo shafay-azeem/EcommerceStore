@@ -5,6 +5,7 @@ import Tabs from './Tabs';
 import ProductScreen from '../src/screens/ProductScreen';
 import ProfileScreen from '../src/screens/ProfileScreen';
 import CartScreen from '../src/screens/CartScreen';
+import OrderScreen from '../src/screens/OrderScreen';
 import WishListScreen from '../src/screens/WishListScreen';
 import DrawerItems from '../src/components/Layout/DrawerItems';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -62,6 +63,15 @@ const Main = () => {
         options={{
           drawerIcon: ({color}) => (
             <Icon name="cart-outline" size={25} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="My Orders"
+        component={OrderScreen}
+        options={{
+          drawerIcon: ({color}) => (
+            <Icon name="reader-outline" size={25} color={color} />
           ),
         }}
       />

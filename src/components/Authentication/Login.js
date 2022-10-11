@@ -169,7 +169,6 @@ const Login = ({navigation}) => {
                 color: '#FF5035',
                 paddingRight: 15,
               }}>
-              {' '}
               Sign Up
             </Text>
           </TouchableOpacity>

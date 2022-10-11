@@ -18,8 +18,8 @@ const Main = () => {
       initialRouteName="Auth"
       screenOptions={{
         headerShown: false,
-        drawerActiveBackgroundColor: '#FF5035',
-        drawerActiveTintColor: '#fff',
+        drawerActiveBackgroundColor: 'none',
+        drawerActiveTintColor: '#FF5035',
         drawerLabelStyle: {
           marginLeft: -25,
           fontSize: 15,

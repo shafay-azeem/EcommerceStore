@@ -1,16 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import SignUp from "../components/Authentication/SignUp.js"
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import React from 'react';
+import SignUp from '../components/Authentication/SignUp.js';
 
-const SignUpScreen = ({ navigation }) => {
-    return (
-        <View>
+const SignUpScreen = ({navigation}) => {
+  return (
+    <ScrollView
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}>
+      <SignUp navigation={navigation}></SignUp>
+    </ScrollView>
+  );
+};
 
-            <SignUp navigation={navigation}></SignUp>
-        </View>
-    )
-}
+export default SignUpScreen;
 
-export default SignUpScreen
-
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

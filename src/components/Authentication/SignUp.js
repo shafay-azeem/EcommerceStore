@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
-var { width } = Dimensions.get('window');
+import React, {useEffect, useState} from 'react';
+var {width} = Dimensions.get('window');
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
   widthPercentageToDP as wp,
@@ -16,15 +16,12 @@ import {
 } from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
 import ImagePicker from 'react-native-image-crop-picker';
-import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../../Redux/Actions/UserAction';
+import {useDispatch, useSelector} from 'react-redux';
+import {register} from '../../../Redux/Actions/UserAction';
 
-
-
-
-const SignUp = ({ navigation }) => {
+const SignUp = ({navigation}) => {
   const dispatch = useDispatch();
-  const { error, loading, isAuthenticated } = useSelector(state => state.user);
+  const {error, loading, isAuthenticated} = useSelector(state => state.user);
   const [passwordVisible, setPasswordVisible] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -131,10 +128,10 @@ const SignUp = ({ navigation }) => {
                 alignItems: 'center',
               }}>
               <Image
-                source={{ uri: avatar }}
+                source={{uri: avatar}}
                 style={{
                   width: 40,
-                  height: hp("5%"),
+                  height: hp('5%'),
                   borderRadius: 60,
                   resizeMode: 'contain',
                   borderWidth: 1,
@@ -144,7 +141,7 @@ const SignUp = ({ navigation }) => {
                 <View
                   style={{
                     marginLeft: 10,
-                    height: hp("6%"),
+                    height: hp('6%'),
                     width: width * 1 - 95,
                     backgroundColor: '#F3F3F3',
                     textAlign: 'center',
@@ -152,7 +149,7 @@ const SignUp = ({ navigation }) => {
                     alignItems: 'center',
                     borderRadius: 9,
                   }}>
-                  <Text style={{ color: '#4F4F4F', fontSize: 15 }}>
+                  <Text style={{color: '#4F4F4F', fontSize: 15}}>
                     Upload Your Image
                   </Text>
                 </View>
@@ -166,7 +163,7 @@ const SignUp = ({ navigation }) => {
               fontSize: 14,
               marginTop: 60,
             }}
-          // onPress={() => navigation.navigate("Forgot")}
+            // onPress={() => navigation.navigate("Forgot")}
           >
             ─────────── OR ───────────
           </Text>
@@ -175,7 +172,7 @@ const SignUp = ({ navigation }) => {
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              paddingTop: width / hp("2%"),
+              paddingTop: width / hp('2%'),
               justifyContent: 'center',
             }}>
             <TouchableOpacity>
@@ -185,7 +182,7 @@ const SignUp = ({ navigation }) => {
 
             <TouchableOpacity>
               <Image
-                style={{ margin: 10 }}
+                style={{margin: 10}}
                 source={require('../../assets/BottomTab/Apple.png')}></Image>
             </TouchableOpacity>
 
@@ -199,7 +196,7 @@ const SignUp = ({ navigation }) => {
             <LinearGradient
               colors={['#FFA985', '#FF5035']}
               style={styles.linearGradient}>
-              <Text style={{ color: '#fff', fontSize: 18 }}>Sign Up</Text>
+              <Text style={{color: '#fff', fontSize: 18}}>Sign Up</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>
@@ -244,7 +241,7 @@ const styles = StyleSheet.create({
     height: width * 2,
   },
   LoginHeader: {
-    paddingTop: width / hp("1%"),
+    paddingTop: width / hp('1%'),
   },
   inputBox: {
     borderRadius: 12,
@@ -276,10 +273,10 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     width: '100%',
-    height: hp("6%"),
+    height: hp('6%'),
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: hp("4%"),
+    marginTop: hp('4%'),
   },
 });

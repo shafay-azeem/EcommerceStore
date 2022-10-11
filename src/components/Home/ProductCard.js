@@ -58,7 +58,7 @@ const ProductCard = ({products, navigation}) => {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Icon name="star" color="#C68600" size={20}></Icon>
               <Text style={{color: '#333', paddingHorizontal: 5, fontSize: 16}}>
-                ( {products.numOfReviews})
+                ({products.numberOfReviews})
               </Text>
             </View>
           </View>
@@ -70,32 +70,38 @@ const ProductCard = ({products, navigation}) => {
           }}>
           {click ? (
             <TouchableOpacity onPress={() => setClick(!click)}>
-              <Icon
-                name="heart"
-                color="crimson"
-                size={25}
+              <View
                 style={{
-                  marginRight: 10,
-                }}
-              />
+                  backgroundColor: 'white',
+                  height: 30,
+                  width: 30,
+                  borderRadius: 15,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Icon name="heart" color="#FF5035" size={18} />
+              </View>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity onPress={() => setClick(!click)}>
-              <Icon
-                name="heart-outline"
-                color="#333"
-                size={25}
+              <View
                 style={{
-                  marginRight: 10,
-                }}
-              />
+                  backgroundColor: 'white',
+                  height: 30,
+                  width: 30,
+                  borderRadius: 15,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Icon name="heart-outline" color="#FF5035" size={18} />
+              </View>
             </TouchableOpacity>
           )}
           {products.Stock !== 0 ? (
             <TouchableOpacity>
               <Icon
                 name="cart-outline"
-                color="#C68600"
+                color="#4F4F4F"
                 size={25}
                 style={{
                   marginRight: 10,
@@ -122,9 +128,9 @@ const styles = StyleSheet.create({
   ProductCard: {
     width: width / 2 - 30,
     height: width / 1.7,
-    borderRadius: 10,
-    elevation: 8,
-    backgroundColor: '#e5e5e5',
+    borderRadius: 3,
+    // elevation: 8,
+    backgroundColor: '#F3F3F3',
     flexWrap: 'wrap',
     margin: 10,
   },
@@ -132,8 +138,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: width / 2 - 60,
     resizeMode: 'contain',
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
+    borderTopRightRadius: 1,
+    borderTopLeftRadius: 1,
   },
   outOfStock: {
     width: 50,

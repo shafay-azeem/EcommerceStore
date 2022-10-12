@@ -1,17 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import Header from '../components/Layout/Header'
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import Header from '../components/Layout/Header';
+import Cart from '../components/Cart/Cart.js';
 
-const CartScreen = ({ navigation }) => {
-    return (
-        <View>
+const CartScreen = ({navigation}) => {
+  return (
+    <View>
+      <Header navigation={navigation}></Header>
+      <Cart navigation={navigation} />
+    </View>
+  );
+};
 
-            <Header navigation={navigation}></Header>
-            <Text>CartScreen</Text>
-        </View>
-    )
-}
+export default CartScreen;
 
-export default CartScreen
-
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

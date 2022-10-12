@@ -20,6 +20,7 @@ const Tab = createBottomTabNavigator();
 function Tabs() {
   const {user, loading} = useSelector(state => state.user);
   const {wishlistData, error} = useSelector(state => state.wishList);
+  const {cartData} = useSelector(state => state.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,7 +29,7 @@ function Tabs() {
     }
     dispatch(getWishList());
     // dispatch(getCart());
-  }, [dispatch, error, wishlistData]);
+  }, [dispatch, error, wishlistData, cartData]);
 
   return (
     <>
@@ -122,7 +123,7 @@ function Tabs() {
               name="cart"
               component={CartScreen}
               options={{
-                tabBarBadge: 1,
+                tabBarBadge: cartData?.length,
                 tabBarIcon: ({focused}) => (
                   <View
                     style={{

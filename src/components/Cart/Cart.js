@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import React from 'react';
 import {useSelector} from 'react-redux';
+import {useState} from 'react';
 var height = Dimensions.get('window').height;
 var width = Dimensions.get('window').width;
 

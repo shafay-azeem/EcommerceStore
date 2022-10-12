@@ -103,6 +103,26 @@ const ProductDetails = ({route, navigation}) => {
     );
   };
 
+  // decreaseQuantity handler
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  // increaseQuantity handler
+  const increaseQuantity = () => {
+    if (route.params?.item.Stock - 1 < quantity) {
+      ToastAndroid.showWithGravity(
+        `${route.params?.item.name} out of stock`,
+        ToastAndroid.SHORT,
+        ToastAndroid.BOTTOM,
+      );
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
   // wishListDataProvider && CartDataProvider
   useEffect(() => {
     if (route.params?.wishlistData && route.params?.wishlistData.length > 0) {
@@ -122,7 +142,7 @@ const ProductDetails = ({route, navigation}) => {
       });
     }
     dispatch(getCart());
-  }, [route.params?.wishlistData, getCart]);
+  }, [route.params?.wishlistData, getCart, cartData]);
   console.log(route.params?.wishlistData, 'ddd');
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
@@ -225,18 +245,20 @@ const ProductDetails = ({route, navigation}) => {
           </Text>
         </View>
         <View style={styles.quantity}>
-          <LinearGradient
-            colors={['#FFA985', '#FF5035']}
-            style={styles.quantityBox}>
-            <Text
-              style={{
-                fontSize: 14,
-                color: '#fff',
-                fontWeight: '800',
-              }}>
-              -
-            </Text>
-          </LinearGradient>
+          <TouchableOpacity onPress={decreaseQuantity}>
+            <LinearGradient
+              colors={['#FFA985', '#FF5035']}
+              style={styles.quantityBox}>
+              <Text
+                style={{
+                  fontSize: 14,
+                  color: '#fff',
+                  fontWeight: '800',
+                }}>
+                -
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
 
           <View
             style={{
@@ -249,21 +271,23 @@ const ProductDetails = ({route, navigation}) => {
                 color: '#333',
                 fontSize: 16,
               }}>
-              1
+              {quantity.toString()}
             </Text>
           </View>
-          <LinearGradient
-            colors={['#FFA985', '#FF5035']}
-            style={styles.quantityBox}>
-            <Text
-              style={{
-                fontSize: 14,
-                color: '#fff',
-                fontWeight: '800',
-              }}>
-              +
-            </Text>
-          </LinearGradient>
+          <TouchableOpacity onPress={increaseQuantity}>
+            <LinearGradient
+              colors={['#FFA985', '#FF5035']}
+              style={styles.quantityBox}>
+              <Text
+                style={{
+                  fontSize: 14,
+                  color: '#fff',
+                  fontWeight: '800',
+                }}>
+                +
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
         </View>
         <View
           style={{

@@ -10,6 +10,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {useState} from 'react';
 import ProductCard from '../Home/ProductCard';
+import {getWishList} from '../../../Redux/Actions/ProductAction';
 var {width} = Dimensions.get('window');
 const categories = [
   {
@@ -48,6 +49,7 @@ const categories = [
 
 const FilterProducts = ({navigation}) => {
   const {products} = useSelector(state => state.products);
+  const {wishlistData} = useSelector(state => state.wishList);
   const [active, setActive] = useState('All');
   const [data, setData] = useState(products);
 
@@ -90,6 +92,7 @@ const FilterProducts = ({navigation}) => {
                   key={product._id}
                   products={product}
                   navigation={navigation}
+                  wishlistData={wishlistData}
                 />
               ))}
           </>

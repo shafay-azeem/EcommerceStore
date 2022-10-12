@@ -1,5 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {productsReducer} from './Reducers/ProductReduer';
+import {
+  productsReducer,
+  wishListaddReducer,
+  wishListDataReducer,
+  wishListRemoveReducer,
+} from './Reducers/ProductReduer';
 import {forgotPasswordReducer, userReducer} from './Reducers/UserReducer';
 
 const Store = configureStore({
@@ -7,6 +12,9 @@ const Store = configureStore({
     products: productsReducer,
     user: userReducer,
     forgotPassword: forgotPasswordReducer,
+    wishListRemove: wishListRemoveReducer,
+    wishListAdd: wishListaddReducer,
+    wishList: wishListDataReducer,
   },
 });
 export default Store;

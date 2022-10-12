@@ -6,14 +6,66 @@ import {
   Image,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  ToastAndroid,
 } from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {useDispatch, useSelector} from 'react-redux';
+import {useEffect} from 'react';
+import {
+  addWishList,
+  removeWishList,
+} from '../../../Redux/Actions/ProductAction';
 
 var {width} = Dimensions.get('window');
-const ProductCard = ({products, navigation}) => {
+const ProductCard = ({products, navigation, wishlistData}) => {
+  const {user} = useSelector(state => state.user);
   const [click, setClick] = useState(false);
+  const [data, setData] = useState('');
+  const [touch, setTouch] = useState(false);
+  const dispatch = useDispatch();
 
+  const wishListHandler = async () => {
+    setClick(true);
+    dispatch(
+      addWishList(
+        products.name,
+        1,
+        products.images[0].url,
+        products.price,
+        user._id,
+        products._id,
+        products.stock,
+      ),
+    );
+    ToastAndroid.showWithGravity(
+      `${products.name} added to Wishlist`,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
+  };
+  const removeWishListData = data => {
+    setClick(false);
+    setTouch(true);
+    let id = data;
+    dispatch(removeWishList(id));
+    ToastAndroid.showWithGravity(
+      `${products.name} removed from Wishlist`,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
+  };
+
+  useEffect(() => {
+    if (wishlistData && wishlistData.length > 0) {
+      wishlistData.map(data => {
+        setData(data);
+        if (data.productId === products._id && touch === false) {
+          setClick(true);
+        }
+      });
+    }
+  }, [wishlistData]);
   return (
     <TouchableWithoutFeedback
       onPress={() => navigation.navigate('ProductDetails', {item: products})}>
@@ -69,7 +121,7 @@ const ProductCard = ({products, navigation}) => {
             justifyContent: 'flex-end',
           }}>
           {click ? (
-            <TouchableOpacity onPress={() => setClick(!click)}>
+            <TouchableOpacity>
               <View
                 style={{
                   backgroundColor: 'white',
@@ -79,11 +131,16 @@ const ProductCard = ({products, navigation}) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                <Icon name="heart" color="#FF5035" size={18} />
+                <Icon
+                  name="heart"
+                  color="#FF5035"
+                  size={18}
+                  onPress={() => removeWishListData(data._id)}
+                />
               </View>
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity onPress={() => setClick(!click)}>
+            <TouchableOpacity>
               <View
                 style={{
                   backgroundColor: 'white',
@@ -93,7 +150,12 @@ const ProductCard = ({products, navigation}) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                <Icon name="heart-outline" color="#FF5035" size={18} />
+                <Icon
+                  name="heart-outline"
+                  color="#FF5035"
+                  size={18}
+                  onPress={wishListHandler}
+                />
               </View>
             </TouchableOpacity>
           )}

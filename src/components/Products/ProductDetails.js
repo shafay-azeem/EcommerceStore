@@ -75,32 +75,31 @@ const ProductDetails = ({route, navigation}) => {
             <Text
               style={{
                 color: '#2B2B2B',
-                fontSize: 17,
+                fontSize: 19,
                 fontWeight: '600',
               }}>
               {route.params?.item.name}
             </Text>
           </View>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={{flexDirection: 'column', alignItems: 'center'}}>
             <Text
               style={{
                 color: '#4F4F4F',
-                fontSize: 15,
-                fontWeight: '400',
-                textDecorationLine: 'line-through',
-                marginRight: 10,
-                marginBottom: 10,
-              }}>
-              ${route.params?.item.price}
-            </Text>
-
-            <Text
-              style={{
-                color: '#4F4F4F',
-                fontSize: 17,
+                fontSize: 19,
                 fontWeight: '600',
               }}>
               ${route.params?.item.price - 10}
+            </Text>
+            <Text
+              style={{
+                color: '#C00',
+                fontSize: 13,
+                fontWeight: '400',
+                textDecorationLine: 'line-through',
+                // marginRight: 10,
+                // marginBottom: 10,
+              }}>
+              ${route.params?.item.price}
             </Text>
           </View>
         </View>

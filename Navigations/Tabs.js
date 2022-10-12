@@ -7,17 +7,29 @@ import ProfileScreen from '../src/screens/ProfileScreen.js';
 import React from 'react';
 
 import {Image, View, StyleSheet} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Loader from '../src/components/Layout/Loader';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ProductDetails from '../src/components/Products/ProductDetails';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
+import {useEffect} from 'react';
+import {getWishList} from '../Redux/Actions/ProductAction';
 
 const Tab = createBottomTabNavigator();
 
 function Tabs() {
   const {user, loading} = useSelector(state => state.user);
-  console.log(user);
+  const {wishlistData, error} = useSelector(state => state.wishList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+    dispatch(getWishList());
+    // dispatch(getCart());
+  }, [dispatch, error, wishlistData]);
+
   return (
     <>
       {loading ? (
@@ -85,7 +97,7 @@ function Tabs() {
               name="wishlist"
               component={WishListScreen}
               options={{
-                tabBarBadge: 1,
+                tabBarBadge: wishlistData?.length,
                 tabBarIcon: ({focused}) => (
                   <View
                     style={{

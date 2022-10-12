@@ -7,7 +7,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-const HomeProduct = ({products, navigation}) => {
+const HomeProduct = ({products, navigation, wishlistData}) => {
   return (
     <>
       <View style={styles.container}>
@@ -18,6 +18,7 @@ const HomeProduct = ({products, navigation}) => {
                 key={product._id}
                 products={product}
                 navigation={navigation}
+                wishlistData={wishlistData}
               />
             ))}
         </View>

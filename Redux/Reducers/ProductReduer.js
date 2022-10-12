@@ -66,3 +66,80 @@ export const wishListRemoveReducer = createReducer(initialState, {
     state.error = action.payload;
   },
 });
+
+// cart add reducer
+export const cartAddReducer = createReducer(initialState, {
+  addCartRequest: state => {
+    state.loading = true;
+  },
+  addCartSuccess: (state, action) => {
+    state.loading = false;
+    state.cart = action.payload;
+    console.log(state.cart, ' state.cart ');
+  },
+  addCartFail: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+    console.log(state.error, ' state.error');
+  },
+});
+
+// cart data reducer
+export const cartDataReducer = createReducer(initialState, {
+  getCartRequest: state => {
+    state.loading = true;
+  },
+  getCartSuccess: (state, action) => {
+    state.loading = false;
+    state.cartData = action.payload.cartData;
+  },
+  getCartFail: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+});
+
+// cart remove reducer
+export const cartRemoveReducer = createReducer(initialState, {
+  removeCartRequest: state => {
+    state.loading = true;
+  },
+  removeCartSuccess: (state, action) => {
+    state.loading = false;
+    state.message = action.payload.message;
+  },
+  removeCartFail: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+});
+
+// cart Update reducer
+export const cartUpdateReducer = createReducer(initialState, {
+  updateCartRequest: state => {
+    state.loading = true;
+  },
+  updateCartSuccess: (state, action) => {
+    state.loading = false;
+    state.message = action.payload.message;
+  },
+  updateCartFail: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+});
+
+// create review reducer
+export const createReviewReducer = createReducer(initialState, {
+  createReviewRequest: state => {
+    state.loading = true;
+  },
+  createReviewSuccess: (state, action) => {
+    state.loading = false;
+    state.success = action.payload;
+  },
+  createReviewFail: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+});

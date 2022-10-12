@@ -53,6 +53,7 @@ const FilterProducts = ({navigation}) => {
   const [active, setActive] = useState('All');
   const [data, setData] = useState(products);
 
+  console.log(wishlistData, 'wishlistData');
   const productsFilter = active => {
     if (active !== 'All') {
       setData([...products.filter(item => item.category === active)]);

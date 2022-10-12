@@ -1,5 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {
+  cartAddReducer,
+  cartDataReducer,
+  cartRemoveReducer,
+  cartUpdateReducer,
   productsReducer,
   wishListaddReducer,
   wishListDataReducer,
@@ -15,6 +19,10 @@ const Store = configureStore({
     wishListRemove: wishListRemoveReducer,
     wishListAdd: wishListaddReducer,
     wishList: wishListDataReducer,
+    cart: cartDataReducer,
+    cartAdd: cartAddReducer,
+    cartRemove: cartRemoveReducer,
+    cartUpdate: cartUpdateReducer,
   },
 });
 export default Store;

@@ -66,9 +66,12 @@ const ProductCard = ({products, navigation, wishlistData}) => {
       });
     }
   }, [wishlistData]);
+
   return (
     <TouchableWithoutFeedback
-      onPress={() => navigation.navigate('ProductDetails', {item: products})}>
+      onPress={() =>
+        navigation.navigate('ProductDetails', {item: products, wishlistData})
+      }>
       <View style={styles.ProductCard}>
         <Image source={{uri: products.images[0].url}} style={styles.image} />
 
@@ -159,7 +162,7 @@ const ProductCard = ({products, navigation, wishlistData}) => {
               </View>
             </TouchableOpacity>
           )}
-          {products.Stock !== 0 ? (
+          {/* {products.Stock !== 0 ? (
             <TouchableOpacity>
               <Icon
                 name="cart-outline"
@@ -170,7 +173,7 @@ const ProductCard = ({products, navigation, wishlistData}) => {
                 }}
               />
             </TouchableOpacity>
-          ) : null}
+          ) : null} */}
         </View>
         {products.Stock === 0 ? (
           <View style={styles.outOfStock}>

@@ -16,6 +16,7 @@ const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
 
   const {products, error, loading} = useSelector(state => state.products);
+  const {wishlistData} = useSelector(state => state.wishList);
 
   useEffect(() => {
     if (error) {
@@ -36,7 +37,8 @@ const HomeScreen = ({navigation}) => {
             <Banner></Banner>
             <HomeProduct
               products={products}
-              navigation={navigation}></HomeProduct>
+              navigation={navigation}
+              wishlistData={wishlistData}></HomeProduct>
           </ScrollView>
         </View>
       )}

@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   TextInput,
+  ToastAndroid,
 } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -20,9 +21,109 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  addCart,
+  addWishList,
+  getCart,
+  removeWishList,
+} from '../../../Redux/Actions/ProductAction';
 
 const ProductDetails = ({route, navigation}) => {
   const [click, setClick] = useState(false);
+  const {user} = useSelector(state => state.user);
+  const [quantity, setQuantity] = useState(1);
+  const [cart, setCart] = useState(false);
+  const [cartdata, setCartData] = useState();
+  const [data, setData] = useState('');
+  const {cartData} = useSelector(state => state.cart);
+
+  const dispatch = useDispatch();
+  // Add to WishList
+  const wishListHandler = () => {
+    setClick(true);
+    dispatch(
+      addWishList(
+        route.params?.item.name,
+        1,
+        route.params?.item.images[0].url,
+        route.params?.item.price,
+        user._id,
+        route.params?.item._id,
+        route.params?.item.stock,
+      ),
+    );
+    ToastAndroid.showWithGravity(
+      `${route.params?.item.name} Added to wishlist`,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
+  };
+
+  // addToCartHandler
+  const addToCartHandler = async () => {
+    await dispatch(
+      addCart(
+        route.params?.item.name,
+        quantity,
+        route.params?.item.images[0].url,
+        route.params?.item.price,
+        user._id,
+        route.params?.item._id,
+        route.params?.item.stock,
+      ),
+    );
+    ToastAndroid.showWithGravity(
+      `${route.params?.item.name} added to cart successfully`,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
+  };
+
+  const cartAlreadyAdded = () => {
+    ToastAndroid.showWithGravity(
+      route.params?.item.stock === 0
+        ? `${route.params?.item.name} out of stock`
+        : `${route.params?.item.name} already have in cart`,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
+  };
+
+  // Remove from wishlist
+  const removeWishListData = data => {
+    setClick(false);
+    let id = data;
+    dispatch(removeWishList(id));
+    ToastAndroid.showWithGravity(
+      `${route.params?.item.name} removed from wishlist`,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
+  };
+
+  // wishListDataProvider && CartDataProvider
+  useEffect(() => {
+    if (route.params?.wishlistData && route.params?.wishlistData.length > 0) {
+      route.params?.wishlistData.map(data => {
+        setData(data);
+        if (data.productId === route.params?.item._id) {
+          setClick(true);
+        }
+      });
+    }
+    if (cartData && cartData.length > 0) {
+      cartData.map(data => {
+        setCartData(data);
+        if (data.productId === route.params?.item._id) {
+          setCart(true);
+        }
+      });
+    }
+    dispatch(getCart());
+  }, [route.params?.wishlistData, getCart]);
+  console.log(route.params?.wishlistData, 'ddd');
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.productDetailsTop}>
@@ -52,7 +153,7 @@ const ProductDetails = ({route, navigation}) => {
               bottom: width / 1.9 - 5,
               right: 0,
             }}
-            onPress={() => setClick(!click)}
+            onPress={() => removeWishListData(data._id)}
           />
         ) : (
           <Icon
@@ -65,7 +166,7 @@ const ProductDetails = ({route, navigation}) => {
               bottom: width / 1.9 - 5,
               right: 0,
             }}
-            onPress={() => setClick(!click)}
+            onPress={wishListHandler}
           />
         )}
       </View>
@@ -169,20 +270,47 @@ const ProductDetails = ({route, navigation}) => {
             width: width * 1 - 30,
             alignItems: 'center',
           }}>
-          <LinearGradient
-            colors={['#FFA985', '#FF5035']}
-            style={styles.linearGradient}>
-            <View>
-              <Text
-                style={{
-                  fontSize: 14,
-                  color: '#fff',
-                  fontWeight: '600',
-                }}>
-                Add to Cart
-              </Text>
-            </View>
-          </LinearGradient>
+          {cart === true || route.params?.item.stock === 0 ? (
+            <TouchableOpacity
+              onPress={cartAlreadyAdded}
+              style={[
+                styles.button,
+                {
+                  backgroundColor: '#000',
+                },
+              ]}>
+              <View>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    color: '#fff',
+                    fontWeight: '600',
+                  }}>
+                  Add to Cart
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              onPress={addToCartHandler}
+              style={[
+                styles.button,
+                {
+                  backgroundColor: '#3BB77E',
+                },
+              ]}>
+              <View>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    color: '#fff',
+                    fontWeight: '600',
+                  }}>
+                  Add to Cart
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
           <View style={styles.reviews}>
             <Text
               style={{

@@ -143,7 +143,6 @@ const ProductDetails = ({route, navigation}) => {
     }
     dispatch(getCart());
   }, [route.params?.wishlistData, getCart, cartData]);
-  console.log(route.params?.wishlistData, 'ddd');
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.productDetailsTop}>

@@ -201,8 +201,7 @@ export default function Cart({navigation}) {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}
-                // onPress={() => navigation.navigate('OrderScreen')}
-              >
+                onPress={() => navigation.navigate('OrderScreen')}>
                 <Text style={{color: '#fff', fontSize: 18, fontWeight: '700'}}>
                   Go to Checkout
                 </Text>

@@ -58,8 +58,10 @@ export default function UpdateAccount({navigation, route}) {
             .then(res => {
               ToastAndroid.showWithGravity(
                 `Password Updated Successfully`,
+
                 ToastAndroid.SHORT,
                 ToastAndroid.BOTTOM,
+                navigation.navigate('Home'),
               );
             });
         } else {
@@ -275,7 +277,8 @@ const UpdateProfile = ({
           }}>
           <TouchableOpacity onPress={updateImage}>
             <Image
-              source={{uri: avatar !== '' ? avatar : user?.avatar.url}}
+              // source={{uri: avatar !== '' ? avatar : user?.avatar.url}}
+              source={require('../../assets/BottomTab/user.jpg')}
               style={{
                 width: 150,
                 height: 150,

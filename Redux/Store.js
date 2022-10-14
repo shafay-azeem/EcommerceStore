@@ -1,4 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
+import {newOrderReducer, orderDataReducer} from './Reducers/OrderReducer';
 import {
   cartAddReducer,
   cartDataReducer,
@@ -27,6 +28,8 @@ const Store = configureStore({
     cartAdd: cartAddReducer,
     cartRemove: cartRemoveReducer,
     cartUpdate: cartUpdateReducer,
+    orderNew: newOrderReducer,
+    orderData: orderDataReducer,
     updateProfile: updateProfileReducer,
   },
   middleware: getDefaultMiddleware =>

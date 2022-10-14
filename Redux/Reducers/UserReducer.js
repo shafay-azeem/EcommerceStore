@@ -79,3 +79,19 @@ export const forgotPasswordReducer = createReducer(initialState, {
     state.error = action.payload;
   },
 });
+
+// update profile Reducer
+export const updateProfileReducer = createReducer(initialState, {
+  updateProfileRequest: state => {
+    state.loading = true;
+    state.error = null;
+  },
+  updateProfileSuccess: (state = {}, action) => {
+    state.loading = false;
+    state.isUpdated = action.payload;
+  },
+  updateProfileFailed: (state = {}, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+});

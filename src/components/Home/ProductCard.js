@@ -18,7 +18,7 @@ import {
 } from '../../../Redux/Actions/ProductAction';
 
 var {width} = Dimensions.get('window');
-const ProductCard = ({products, navigation, wishlistData}) => {
+const ProductCard = ({products, navigation, wishlistData, cartData}) => {
   const {user} = useSelector(state => state.user);
   const [click, setClick] = useState(false);
   const [data, setData] = useState('');

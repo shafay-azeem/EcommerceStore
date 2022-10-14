@@ -17,6 +17,7 @@ const HomeScreen = ({navigation}) => {
 
   const {products, error, loading} = useSelector(state => state.products);
   const {wishlistData} = useSelector(state => state.wishList);
+  const {cartData} = useSelector(state => state.cart);
 
   useEffect(() => {
     if (error) {
@@ -38,7 +39,8 @@ const HomeScreen = ({navigation}) => {
             <HomeProduct
               products={products}
               navigation={navigation}
-              wishlistData={wishlistData}></HomeProduct>
+              wishlistData={wishlistData}
+              cartData={cartData}></HomeProduct>
           </ScrollView>
         </View>
       )}

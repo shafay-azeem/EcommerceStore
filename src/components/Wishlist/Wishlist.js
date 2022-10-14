@@ -24,8 +24,6 @@ export default function Wishlist({navigation}) {
 
   const dispatch = useDispatch();
 
-  //   console.log(cartData, 'cardata');
-
   // add to cart
   const addToCartHandler = async (
     productName,
@@ -37,7 +35,6 @@ export default function Wishlist({navigation}) {
   ) => {
     let quantity = 1;
     if (Stock === 0 || productId === itemId) {
-      console.log(productId, 'productid');
       ToastAndroid.showWithGravity(
         productId === itemId
           ? `${productName} already have in cart`
@@ -65,11 +62,11 @@ export default function Wishlist({navigation}) {
     }
   };
 
-  //   useEffect(() => {
-  //     cartData.map(item => {
-  //       setItemId(item.productId);
-  //     });
-  //   }, [dispatch, cartData]);
+  useEffect(() => {
+    cartData.map(item => {
+      setItemId(item.productId);
+    });
+  }, [dispatch, cartData]);
 
   return (
     <View>

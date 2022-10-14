@@ -9,7 +9,11 @@ import {
   wishListDataReducer,
   wishListRemoveReducer,
 } from './Reducers/ProductReduer';
-import {forgotPasswordReducer, userReducer} from './Reducers/UserReducer';
+import {
+  forgotPasswordReducer,
+  updateProfileReducer,
+  userReducer,
+} from './Reducers/UserReducer';
 
 const Store = configureStore({
   reducer: {
@@ -23,6 +27,12 @@ const Store = configureStore({
     cartAdd: cartAddReducer,
     cartRemove: cartRemoveReducer,
     cartUpdate: cartUpdateReducer,
+    updateProfile: updateProfileReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      immutableCheck: false,
+      serializableCheck: false,
+    }),
 });
 export default Store;

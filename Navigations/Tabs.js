@@ -5,6 +5,7 @@ import WishListScreen from '../src/screens/WishListScreen';
 import CartScreen from '../src/screens/CartScreen';
 import ProfileScreen from '../src/screens/ProfileScreen';
 import OrderScreen from '../src/components/Order/OrderScreen';
+import UpdateAccount from '../src/components/Profile/UpdateAccount';
 import React from 'react';
 
 import {Image, View, StyleSheet} from 'react-native';
@@ -30,7 +31,7 @@ function Tabs() {
     }
     dispatch(getWishList());
     // dispatch(getCart());
-  }, [dispatch, error, wishlistData, cartData]);
+  }, [dispatch, error, wishlistData]);
 
   return (
     <>
@@ -189,6 +190,7 @@ const SimpleScreen = () => {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="ProductDetails" component={ProductDetails} />
       <Stack.Screen name="OrderScreen" component={OrderScreen} />
+      <Stack.Screen name="UpdateProfile" component={UpdateAccount} />
     </Stack.Navigator>
   );
 };
@@ -200,6 +202,9 @@ const Visibility = route => {
     return 'none';
   }
   if (routeName === 'OrderScreen') {
+    return 'none';
+  }
+  if (routeName === 'UpdateProfile') {
     return 'none';
   }
   if (routeName === 'Home') {

@@ -14,7 +14,6 @@ export const getProduct = () => async dispatch => {
       payload: data,
     });
   } catch (error) {
-    console.log(error, 'eee');
     dispatch({
       type: 'allProductFail',
       payload: error,
@@ -60,7 +59,6 @@ export const addWishList =
         payload: data,
       });
     } catch (error) {
-      console.log(error, 'error');
       dispatch({
         type: 'addWishListFail',
         payload: error.response.data.message,
@@ -74,7 +72,7 @@ export const removeWishList = id => async dispatch => {
     dispatch({
       type: 'removeWishListRequest',
     });
-    console.log(id, 'id');
+
     const {data} = await axios.delete(
       `https://ecommercebackend-api.herokuapp.com/api/v2/removeWishlist/${id}`,
     );
@@ -83,7 +81,6 @@ export const removeWishList = id => async dispatch => {
       payload: data,
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: 'removeWishListFail',
       payload: error.response.data.message,

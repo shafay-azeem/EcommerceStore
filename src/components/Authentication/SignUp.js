@@ -36,7 +36,6 @@ const SignUp = ({navigation}) => {
       height: 400,
       cropping: true,
     }).then(image => {
-      console.log(image);
       setAvatar(image.path);
     });
   };

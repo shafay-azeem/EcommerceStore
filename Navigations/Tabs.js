@@ -2,8 +2,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../src/screens/HomeScreen';
 import ProductScreen from '../src/screens/ProductScreen';
 import WishListScreen from '../src/screens/WishListScreen';
-import CartScreen from '../src/screens/CartScreen.js';
-import ProfileScreen from '../src/screens/ProfileScreen.js';
+import CartScreen from '../src/screens/CartScreen';
+import ProfileScreen from '../src/screens/ProfileScreen';
+import OrderScreen from '../src/components/Order/OrderScreen';
 import React from 'react';
 
 import {Image, View, StyleSheet} from 'react-native';
@@ -187,6 +188,7 @@ const SimpleScreen = () => {
       initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="ProductDetails" component={ProductDetails} />
+      <Stack.Screen name="OrderScreen" component={OrderScreen} />
     </Stack.Navigator>
   );
 };
@@ -195,6 +197,9 @@ const Visibility = route => {
   const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
 
   if (routeName === 'ProductDetails') {
+    return 'none';
+  }
+  if (routeName === 'OrderScreen') {
     return 'none';
   }
   if (routeName === 'Home') {

@@ -9,8 +9,7 @@ export const productsReducer = createReducer(initialState, {
     state.loading = true;
   },
   allProductSuccess: (state, action) => {
-    console.log(action.payload.products, 'action'),
-      (state.loading = false),
+    (state.loading = false),
       (state.products = action.payload.products),
       (state.productsCount = action.payload.productsCount);
     state.resultPerPage = action.payload.resultPerPage;
@@ -75,12 +74,10 @@ export const cartAddReducer = createReducer(initialState, {
   addCartSuccess: (state, action) => {
     state.loading = false;
     state.cart = action.payload;
-    console.log(state.cart, ' state.cart ');
   },
   addCartFail: (state, action) => {
     state.loading = false;
     state.error = action.payload;
-    console.log(state.error, ' state.error');
   },
 });
 

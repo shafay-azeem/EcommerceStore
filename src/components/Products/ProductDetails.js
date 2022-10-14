@@ -452,20 +452,29 @@ const ProductDetails = ({route, navigation}) => {
                 }}
               />
             </View>
-            <LinearGradient
-              colors={['#FFA985', '#FF5035']}
-              style={[styles.linearGradient, {alignSelf: 'center'}]}>
-              <View>
-                <Text
-                  style={{
-                    fontSize: 14,
-                    color: '#fff',
-                    fontWeight: '600',
-                  }}>
-                  Submit
-                </Text>
-              </View>
-            </LinearGradient>
+            <TouchableOpacity
+              style={{
+                alignItems: 'center',
+                marginBottom: 30,
+              }}>
+              <Text style={styles.submitButton}>Submit</Text>
+            </TouchableOpacity>
+            {/* <TouchableOpacity>
+              <LinearGradient
+                colors={['#FFA985', '#FF5035']}
+                style={[styles.linearGradient, {alignSelf: 'center'}]}>
+                <View>
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      color: '#fff',
+                      fontWeight: '600',
+                    }}>
+                    Submit
+                  </Text>
+                </View>
+              </LinearGradient>
+            </TouchableOpacity> */}
           </View>
         </View>
       </View>
@@ -544,17 +553,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 5,
   },
-  // submitButton: {
-  //   width: '70%',
-  //   // backgroundColor: '#3BB77E',
-  //   marginTop: 20,
-  //   borderRadius: 10,
-  //   paddingVertical: 15,
-  //   textAlign: 'center',
-  //   color: '#fff',
-  //   fontSize: 18,
-  //   fontWeight: '600',
-  // },
+  submitButton: {
+    width: '70%',
+    backgroundColor: '#3BB77E',
+    marginTop: 20,
+    borderRadius: 5,
+    paddingVertical: 15,
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
+  },
   reviews: {
     marginTop: 10,
     width: width * 1,

@@ -125,7 +125,7 @@ export default function Profile({navigation}) {
                 <Text style={{color: '#000', fontSize: 18}}>Edit Profile</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={{
                 marginHorizontal: 15,
                 marginVertical: 10,
@@ -140,7 +140,7 @@ export default function Profile({navigation}) {
                 <Icon name="earth-outline" size={40} color="#333" />
                 <Text style={styles.normalText}>Developer Contact</Text>
               </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               style={{
                 marginHorizontal: 15,

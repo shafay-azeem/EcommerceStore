@@ -297,7 +297,7 @@ const Success = ({navigation}) => {
           textAlign: 'center',
           marginBottom: 20,
         }}>
-        Your Order is Placed Successfully😍
+        Your Order is Placed Successfully
       </Text>
       <TouchableOpacity
         style={styles.button}

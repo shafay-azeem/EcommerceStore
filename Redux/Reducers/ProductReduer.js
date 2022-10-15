@@ -74,10 +74,12 @@ export const cartAddReducer = createReducer(initialState, {
   addCartSuccess: (state, action) => {
     state.loading = false;
     state.cart = action.payload;
+    console.log(state.cart, 'ooo');
   },
   addCartFail: (state, action) => {
     state.loading = false;
     state.error = action.payload;
+    console.log(state.error, 'ppp');
   },
 });
 

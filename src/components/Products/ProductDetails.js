@@ -57,7 +57,7 @@ const ProductDetails = ({route, navigation}) => {
         route.params?.item.price,
         user._id,
         route.params?.item._id,
-        route.params?.item.Stock,
+        route.params?.item.stock,
       ),
     );
     ToastAndroid.showWithGravity(
@@ -109,11 +109,12 @@ const ProductDetails = ({route, navigation}) => {
         route.params?.item.price,
         user._id,
         route.params?.item._id,
-        route.params?.item.Stock,
+        route.params?.item.stock,
       ),
     );
     ToastAndroid.showWithGravity(
-      `${route.params?.item.name} added to cart successfully`,
+      `${route.params?.item.stock} added to cart successfully`,
+      // `${route.params?.item.stock}`,
       ToastAndroid.SHORT,
       ToastAndroid.BOTTOM,
     );
@@ -492,15 +493,16 @@ const ProductDetails = ({route, navigation}) => {
                 }}
               />
             </View>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={{
                 alignItems: 'center',
                 marginBottom: 30,
               }}
               onPress={() => commentHandler(route.params?.item._id)}>
               <Text style={styles.submitButton}>Submit</Text>
-            </TouchableOpacity>
-            {/* <TouchableOpacity>
+            </TouchableOpacity > */}
+            <TouchableOpacity
+              onPress={() => commentHandler(route.params?.item._id)}>
               <LinearGradient
                 colors={['#FFA985', '#FF5035']}
                 style={[styles.linearGradient, {alignSelf: 'center'}]}>
@@ -515,7 +517,7 @@ const ProductDetails = ({route, navigation}) => {
                   </Text>
                 </View>
               </LinearGradient>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           </View>
         </View>
       </View>

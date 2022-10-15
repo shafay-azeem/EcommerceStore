@@ -224,7 +224,7 @@ export const createReview = (rating, comment, productId) => async dispatch => {
       headers: {'Content-Type': 'application/json'},
     };
     const {data} = await axios.post(
-      `https://ecommercebackend-api.herokuapp.com/api/v2/product/review`,
+      `https://ecommercebackend-api.herokuapp.com/api/ecommerce/product/review`,
       {
         rating,
         comment,

@@ -2,6 +2,10 @@ import axios from 'axios';
 
 // create Order
 export const createOrder = order => async dispatch => {
+  const paymentInfo = {
+    id: '3132',
+    status: 'succeeded',
+  };
   try {
     dispatch({
       type: 'newOrderRequest',
@@ -14,19 +18,18 @@ export const createOrder = order => async dispatch => {
     const {data} = await axios.post(
       `https://ecommercebackend-api.herokuapp.com/api/order/createorder`,
       order,
+      paymentInfo,
       config,
     );
     dispatch({
       type: 'newOrderSuccess',
       payload: data,
     });
-    console.log(data);
   } catch (error) {
     dispatch({
       type: 'newOrderFail',
       payload: error.response.data.message,
     });
-    console.log(error.response.data.message);
   }
 };
 

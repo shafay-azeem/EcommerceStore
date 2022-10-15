@@ -134,9 +134,11 @@ export const createReviewReducer = createReducer(initialState, {
   createReviewSuccess: (state, action) => {
     state.loading = false;
     state.success = action.payload;
+    console.log(state.success, 'state.success');
   },
   createReviewFail: (state, action) => {
     state.loading = false;
     state.error = action.payload;
+    console.log(state.error, 'state.error');
   },
 });

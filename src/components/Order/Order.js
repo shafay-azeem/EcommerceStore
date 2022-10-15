@@ -25,11 +25,11 @@ const Order = ({navigation}) => {
   const {cartData} = useSelector(state => state.cart);
   const {user} = useSelector(state => state.user);
   const [active, setActive] = useState(1);
-  const [address, setAddress] = useState('');
-  const [state, setState] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(0);
-  const [countryName, setCountryName] = useState('');
-  const [cityName, setCityName] = useState('');
+  const [address, setAddress] = useState('abc street');
+  const [state, setState] = useState('Sindh');
+  const [phoneNumber, setPhoneNumber] = useState('03009237090');
+  const [countryName, setCountryName] = useState('PAK');
+  const [cityName, setCityName] = useState('Karachi');
   const [subtotal, setSubtotal] = useState(0);
   const [success, setSuccess] = useState(false);
 
@@ -79,6 +79,10 @@ const Order = ({navigation}) => {
     if (cartData.length > 0) {
       setActive(3);
     }
+  };
+  const submitHandler = async () => {
+    dispatch(createOrder(order));
+    setSuccess(true);
   };
 
   return (
@@ -274,31 +278,13 @@ const Confirmation = ({
 const PaymentInfo = ({totalPrice, submitHandler}) => {
   return (
     <ScrollView style={styles.confirmation}>
-      {/* <Text
-        style={{
-          color: '#333',
-          fontSize: 20,
-          textAlign: 'center',
-        }}>
-        Enter your Card Info
-      </Text>
-      <CardField
-        postalCodeEnabled={false}
-        cardNumberEnabled={true}
-        style={{
-          width: '90%',
-          height: 50,
-          marginVertical: 30,
-          marginLeft: 15,
-          color: '#333',
-        }}
-      />
       <TouchableOpacity style={styles.button} onPress={submitHandler}>
         <Text style={styles.buttonText}>Pay - ${totalPrice}</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
     </ScrollView>
   );
 };
+
 export default Order;
 
 const Success = ({navigation}) => {

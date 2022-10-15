@@ -114,6 +114,5 @@ export const updateProfile = (name, email, avatar) => async dispatch => {
       type: 'updateProfileFailed',
       payload: error.response.data.message,
     });
-    console.log(error.response.data.message);
   }
 };

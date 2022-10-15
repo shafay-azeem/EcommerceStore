@@ -26,20 +26,26 @@ import {useDispatch, useSelector} from 'react-redux';
 import {
   addCart,
   addWishList,
+  createReview,
   getCart,
+  getProduct,
   removeWishList,
 } from '../../../Redux/Actions/ProductAction';
 
 const ProductDetails = ({route, navigation}) => {
   const [click, setClick] = useState(false);
-  const {user} = useSelector(state => state.user);
-  const [quantity, setQuantity] = useState(1);
   const [cart, setCart] = useState(false);
-  const [cartdata, setCartData] = useState();
+  const [quantity, setQuantity] = useState(1);
   const [data, setData] = useState('');
+  const [cartdata, setCartData] = useState();
+  const {user} = useSelector(state => state.user);
   const {cartData} = useSelector(state => state.cart);
 
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
+
   const dispatch = useDispatch();
+
   // Add to WishList
   const wishListHandler = () => {
     setClick(true);
@@ -51,41 +57,11 @@ const ProductDetails = ({route, navigation}) => {
         route.params?.item.price,
         user._id,
         route.params?.item._id,
-        route.params?.item.stock,
+        route.params?.item.Stock,
       ),
     );
     ToastAndroid.showWithGravity(
       `${route.params?.item.name} Added to wishlist`,
-      ToastAndroid.SHORT,
-      ToastAndroid.BOTTOM,
-    );
-  };
-
-  // addToCartHandler
-  const addToCartHandler = async () => {
-    await dispatch(
-      addCart(
-        route.params?.item.name,
-        quantity,
-        route.params?.item.images[0].url,
-        route.params?.item.price,
-        user._id,
-        route.params?.item._id,
-        route.params?.item.stock,
-      ),
-    );
-    ToastAndroid.showWithGravity(
-      `${route.params?.item.name} added to cart successfully`,
-      ToastAndroid.SHORT,
-      ToastAndroid.BOTTOM,
-    );
-  };
-
-  const cartAlreadyAdded = () => {
-    ToastAndroid.showWithGravity(
-      route.params?.item.stock === 0
-        ? `${route.params?.item.name} out of stock`
-        : `${route.params?.item.name} already have in cart`,
       ToastAndroid.SHORT,
       ToastAndroid.BOTTOM,
     );
@@ -123,6 +99,56 @@ const ProductDetails = ({route, navigation}) => {
     }
   };
 
+  // addToCartHandler
+  const addToCartHandler = async () => {
+    await dispatch(
+      addCart(
+        route.params?.item.name,
+        quantity,
+        route.params?.item.images[0].url,
+        route.params?.item.price,
+        user._id,
+        route.params?.item._id,
+        route.params?.item.Stock,
+      ),
+    );
+    ToastAndroid.showWithGravity(
+      `${route.params?.item.name} added to cart successfully`,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
+  };
+
+  // cartAlreadyAdded handler
+  const cartAlreadyAdded = () => {
+    ToastAndroid.showWithGravity(
+      route.params?.item.Stock === 0
+        ? `${route.params?.item.name} out of stock`
+        : `${route.params?.item.name} already have in cart`,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
+  };
+
+  // create review
+  const commentHandler = async productId => {
+    if (comment.length === 0 || rating === 0) {
+      ToastAndroid.showWithGravity(
+        'Please fill the comment box and add rating',
+        ToastAndroid.SHORT,
+        ToastAndroid.BOTTOM,
+      );
+    } else {
+      dispatch(createReview(rating, comment, productId));
+      ToastAndroid.showWithGravity(
+        'Review added successfully',
+        ToastAndroid.SHORT,
+        ToastAndroid.BOTTOM,
+      );
+      navigation.navigate('Home');
+    }
+  };
+
   // wishListDataProvider && CartDataProvider
   useEffect(() => {
     if (route.params?.wishlistData && route.params?.wishlistData.length > 0) {
@@ -142,7 +168,8 @@ const ProductDetails = ({route, navigation}) => {
       });
     }
     dispatch(getCart());
-  }, [route.params?.wishlistData, getCart, cartData]);
+  }, [route.params?.wishlistData, cartData]);
+
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.productDetailsTop}>
@@ -377,6 +404,7 @@ const ProductDetails = ({route, navigation}) => {
                           fontWeight: '600',
                           paddingLeft: 5,
                         }}>
+                        {'     '}
                         {i.comment}
                       </Text>
                     </Text>
@@ -401,36 +429,46 @@ const ProductDetails = ({route, navigation}) => {
                 }}>
                 Your Ratings*
               </Text>
-              <Icon
-                name="star-outline"
-                color="#C68600"
-                size={18}
-                style={{marginHorizontal: 2}}
-              />
-              <Icon
-                name="star-outline"
-                color="#C68600"
-                size={18}
-                style={{marginHorizontal: 2}}
-              />
-              <Icon
-                name="star-outline"
-                color="#C68600"
-                size={18}
-                style={{marginHorizontal: 2}}
-              />
-              <Icon
-                name="star-outline"
-                color="#C68600"
-                size={18}
-                style={{marginHorizontal: 2}}
-              />
-              <Icon
-                name="star-outline"
-                color="#C68600"
-                size={18}
-                style={{marginHorizontal: 2}}
-              />
+              <TouchableOpacity onPress={() => setRating(1)}>
+                <Icon
+                  name={rating > 0 ? 'star' : 'star-outline'}
+                  color="#C68600"
+                  size={18}
+                  style={{marginHorizontal: 2}}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => setRating(2)}>
+                <Icon
+                  name={rating > 1 ? 'star' : 'star-outline'}
+                  color="#C68600"
+                  size={18}
+                  style={{marginHorizontal: 2}}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => setRating(3)}>
+                <Icon
+                  name={rating > 2 ? 'star' : 'star-outline'}
+                  color="#C68600"
+                  size={18}
+                  style={{marginHorizontal: 2}}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => setRating(4)}>
+                <Icon
+                  name={rating > 3 ? 'star' : 'star-outline'}
+                  color="#C68600"
+                  size={18}
+                  style={{marginHorizontal: 2}}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => setRating(5)}>
+                <Icon
+                  name={rating > 4 ? 'star' : 'star-outline'}
+                  color="#C68600"
+                  size={18}
+                  style={{marginHorizontal: 2}}
+                />
+              </TouchableOpacity>
             </View>
             <View
               style={{
@@ -442,6 +480,8 @@ const ProductDetails = ({route, navigation}) => {
                 placeholder="Add your comment..."
                 placeholderTextColor="#333"
                 textAlignVertical="top"
+                value={comment}
+                onChangeText={text => setComment(text)}
                 style={{
                   borderWidth: 1,
                   paddingLeft: 10,
@@ -456,7 +496,8 @@ const ProductDetails = ({route, navigation}) => {
               style={{
                 alignItems: 'center',
                 marginBottom: 30,
-              }}>
+              }}
+              onPress={() => commentHandler(route.params?.item._id)}>
               <Text style={styles.submitButton}>Submit</Text>
             </TouchableOpacity>
             {/* <TouchableOpacity>

@@ -151,13 +151,12 @@ const UpdatePassword = ({
       }}>
       <Text
         style={{
-          fontSize: 25,
-          color: '#333',
-          fontWeight: '700',
+          fontSize: 30,
+          fontWeight: '600',
+          color: '#FF5035',
           textAlign: 'center',
-          marginBottom: 20,
         }}>
-        Change Your Password
+        Welcome!
       </Text>
       <View style={styles.inputMain}>
         <TextInput

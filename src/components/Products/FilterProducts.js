@@ -11,7 +11,9 @@ import {useSelector} from 'react-redux';
 import {useState} from 'react';
 import ProductCard from '../Home/ProductCard';
 import {getWishList} from '../../../Redux/Actions/ProductAction';
+import LinearGradient from 'react-native-linear-gradient';
 var {width} = Dimensions.get('window');
+var height = Dimensions.get('window').height;
 const categories = [
   {
     id: 1,
@@ -73,9 +75,13 @@ const FilterProducts = ({navigation}) => {
         {categories.map((i, index) => (
           <TouchableOpacity
             onPress={() => productsFilter(i.name)}
-            style={[styles.name, active === i.name && styles.nameActive]}
+            style={[
+              styles.name,
+              active === i.name && styles.nameActive,
+              {color: '#fff'},
+            ]}
             key={index}>
-            <Text style={{color: '#fff'}}>{i.name}</Text>
+            <Text style={{color: '#2B2B2B'}}>{i.name}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -105,19 +111,20 @@ const FilterProducts = ({navigation}) => {
 export default FilterProducts;
 const styles = StyleSheet.create({
   name: {
-    borderRadius: 15,
-    backgroundColor: 'crimson',
+    borderRadius: 3,
+    backgroundColor: '#F3F3F3',
     marginHorizontal: 5,
     paddingHorizontal: 8,
     paddingVertical: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'white',
+    color: '#fff',
     textAlign: 'center',
     marginBottom: 10,
   },
   nameActive: {
-    backgroundColor: '#000',
+    backgroundColor: '#FF5035',
+    color: 'white',
   },
   productCard: {
     width: width * 1 - 10,

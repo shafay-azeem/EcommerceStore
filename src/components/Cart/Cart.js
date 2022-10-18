@@ -13,6 +13,7 @@ import {useState} from 'react';
 import {removeCart, updateCart} from '../../../Redux/Actions/ProductAction';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useEffect} from 'react';
+import LinearGradient from 'react-native-linear-gradient';
 var height = Dimensions.get('window').height;
 var width = Dimensions.get('window').width;
 
@@ -99,7 +100,7 @@ export default function Cart({navigation}) {
                       flexDirection: 'row',
                       justifyContent: 'flex-start',
                     }}>
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                       onPress={() => decreaseQuantity(items._id, items.Stock)}>
                       <View
                         style={[
@@ -117,26 +118,45 @@ export default function Cart({navigation}) {
                           -
                         </Text>
                       </View>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity
+                      onPress={() => decreaseQuantity(items._id, items.Stock)}>
+                      <LinearGradient
+                        colors={['#FFA985', '#FF5035']}
+                        style={styles.quantityBox}>
+                        <Text
+                          style={{
+                            fontSize: 14,
+                            color: '#fff',
+                            fontWeight: '800',
+                          }}>
+                          -
+                        </Text>
+                      </LinearGradient>
                     </TouchableOpacity>
                     <Text
                       style={{
                         fontSize: 20,
                         color: '#333',
                       }}>
-                      {quantity.toString()}
+                      {items.quantity}
+                      {/* {quantity.toString()} */}
                     </Text>
+
                     <TouchableOpacity
                       onPress={() => increaseQuantity(items._id, items.Stock)}>
-                      <View style={styles.quantityBox}>
+                      <LinearGradient
+                        colors={['#FFA985', '#FF5035']}
+                        style={styles.quantityBox}>
                         <Text
                           style={{
-                            fontSize: 20,
+                            fontSize: 14,
                             color: '#fff',
                             fontWeight: '800',
                           }}>
                           +
                         </Text>
-                      </View>
+                      </LinearGradient>
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={() =>
@@ -144,16 +164,16 @@ export default function Cart({navigation}) {
                       }>
                       <Icon
                         name="ios-trash"
-                        size={30}
-                        color="crimson"
-                        style={{marginHorizontal: 10}}
+                        size={25}
+                        color="#000000"
+                        style={{marginHorizontal: 14, marginTop: '15%'}}
                       />
                     </TouchableOpacity>
                   </View>
                 </View>
-                <View>
+                <View style={{marginTop: '10%', marginLeft: '13%'}}>
                   <Text style={styles.productPrice}>
-                    $ {items.productPrice * quantity}
+                    ${items.productPrice * items.quantity}
                   </Text>
                 </View>
               </View>
@@ -174,15 +194,15 @@ export default function Cart({navigation}) {
                 flexDirection: 'row',
                 marginVertical: 20,
               }}>
-              <Text style={{color: '#333', fontSize: 20, paddingLeft: 15}}>
+              <Text style={{color: '#333', fontSize: 15, paddingLeft: 15}}>
                 Total Price:
               </Text>
               <Text
                 style={{
-                  color: 'crimson',
-                  fontSize: 22,
+                  color: '#333',
+                  fontSize: 15,
                   paddingRight: 15,
-                  fontWeight: '700',
+                  fontWeight: '500',
                 }}>
                 ${totalPrice}
               </Text>
@@ -192,7 +212,7 @@ export default function Cart({navigation}) {
                 width: width * 1,
                 alignItems: 'center',
               }}>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={{
                   backgroundColor: '#3BB77E',
                   width: width / 2 + 40,
@@ -205,7 +225,26 @@ export default function Cart({navigation}) {
                 <Text style={{color: '#fff', fontSize: 18, fontWeight: '700'}}>
                   Go to Checkout
                 </Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
+              <View>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('OrderScreen')}>
+                  <LinearGradient
+                    colors={['#FFA985', '#FF5035']}
+                    style={[styles.linearGradient, {alignSelf: 'center'}]}>
+                    <View>
+                      <Text
+                        style={{
+                          fontSize: 14,
+                          color: '#fff',
+                          fontWeight: '600',
+                        }}>
+                        Checkout
+                      </Text>
+                    </View>
+                  </LinearGradient>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </>
@@ -217,7 +256,7 @@ export default function Cart({navigation}) {
             alignItems: 'center',
           }}>
           <Text style={{color: '#333', fontSize: 20, textAlign: 'center'}}>
-            Your Cart is empty
+            Your cart is empty
           </Text>
         </View>
       )}
@@ -233,18 +272,38 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   productPrice: {
-    fontSize: 22,
+    fontSize: 15,
     color: '#333',
-    fontWeight: '700',
+    fontWeight: '500',
   },
+  // quantityBox: {
+  //   width: 35,
+  //   height: 35,
+  //   backgroundColor: '#3BB77E',
+  //   borderRadius: 5,
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   marginHorizontal: 10,
+  // },
   quantityBox: {
     width: 35,
     height: 35,
     backgroundColor: '#3BB77E',
-    borderRadius: 5,
+    borderRadius: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 10,
+  },
+  linearGradient: {
+    width: '100%',
+    backgroundColor: '#3BB77E',
+    height: 50,
+    marginTop: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
   },
 });

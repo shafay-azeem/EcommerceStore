@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 import Header from '../components/Layout/Header';
 import {useEffect} from 'react';
@@ -33,56 +33,61 @@ export default function OrderScreen({navigation}) {
 
 const MyOrder = ({orders}) => {
   return (
+    // <ScrollView style={{}}>
     <View>
       {orders && orders.length > 0 ? (
         orders.map((item, index) => (
           <>
-            <View
-              key={index}
-              style={{
-                width: width * 1,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                padding: 10,
-                marginVertical: 10,
-              }}>
-              <View style={{alignItems: 'center'}}>
-                <Text style={{color: '#333'}}>Order Status</Text>
-                <Text
-                  style={{
-                    color:
-                      item.orderStatus === 'Processing' ? 'crimson' : '#3BB77E',
-                  }}>
-                  {item.orderStatus}
-                </Text>
+            <ScrollView style={{}}>
+              <View
+                key={index}
+                style={{
+                  width: width * 1,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  padding: 10,
+                  marginVertical: 10,
+                }}>
+                <View style={{alignItems: 'center'}}>
+                  <Text style={{color: '#333'}}>Order Status</Text>
+                  <Text
+                    style={{
+                      color:
+                        item.orderStatus === 'Processing'
+                          ? 'crimson'
+                          : '#3BB77E',
+                    }}>
+                    {item.orderStatus}
+                  </Text>
+                </View>
+                <View style={{alignItems: 'center'}}>
+                  <Text style={{color: '#333'}}>Items Qty</Text>
+                  <Text style={{color: '#333'}}>
+                    {item.orderItems.reduce(
+                      (total, item) => total + item.quantity,
+                      0,
+                    )}
+                  </Text>
+                </View>
+                <View style={{alignItems: 'center'}}>
+                  <Text style={{color: '#333'}}>Amount</Text>
+                  <Text style={{color: '#333'}}>${item.totalPrice}</Text>
+                </View>
+                <View style={{alignItems: 'center'}}>
+                  <Text style={{color: '#333'}}>Order Items</Text>
+                  <Text style={{color: '#333'}}>
+                    {item.orderItems[0].productName}...
+                  </Text>
+                </View>
               </View>
-              <View style={{alignItems: 'center'}}>
-                <Text style={{color: '#333'}}>Items Qty</Text>
-                <Text style={{color: '#333'}}>
-                  {item.orderItems.reduce(
-                    (total, item) => total + item.quantity,
-                    0,
-                  )}
-                </Text>
-              </View>
-              <View style={{alignItems: 'center'}}>
-                <Text style={{color: '#333'}}>Amount</Text>
-                <Text style={{color: '#333'}}>${item.totalPrice}</Text>
-              </View>
-              <View style={{alignItems: 'center'}}>
-                <Text style={{color: '#333'}}>Order Items</Text>
-                <Text style={{color: '#333'}}>
-                  {item.orderItems[0].productName}...
-                </Text>
-              </View>
-            </View>
-            <View
-              style={{
-                width: width * 1,
-                height: 1,
-                backgroundColor: '#00000036',
-              }}
-            />
+              <View
+                style={{
+                  width: width * 1,
+                  height: 1,
+                  backgroundColor: '#00000036',
+                }}
+              />
+            </ScrollView>
           </>
         ))
       ) : (
@@ -91,6 +96,7 @@ const MyOrder = ({orders}) => {
         </View>
       )}
     </View>
+    // </ScrollView>
   );
 };
 

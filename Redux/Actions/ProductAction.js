@@ -120,15 +120,6 @@ export const addCart =
     Stock,
   ) =>
   async dispatch => {
-    console.log(
-      productName,
-      quantity,
-      productImage,
-      productPrice,
-      userId,
-      productId,
-      Stock,
-    );
     try {
       dispatch({
         type: 'addCartRequest',

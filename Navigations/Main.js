@@ -49,7 +49,7 @@ const Main = () => {
         }}
       />
       <Drawer.Screen
-        name="wishlist"
+        name="Wishlist"
         component={WishListScreen}
         options={{
           drawerIcon: ({color}) => (
@@ -58,7 +58,7 @@ const Main = () => {
         }}
       />
       <Drawer.Screen
-        name="cart"
+        name="Cart"
         component={CartScreen}
         options={{
           drawerIcon: ({color}) => (
@@ -76,7 +76,7 @@ const Main = () => {
         }}
       />
       <Drawer.Screen
-        name="profile"
+        name="Profile"
         component={ProfileScreen}
         options={{
           drawerIcon: ({color}) => (

@@ -98,7 +98,7 @@ const ProductCard = ({products, navigation, wishlistData, cartData}) => {
                 paddingHorizontal: 10,
                 fontSize: 16,
               }}>
-              ${products.price - 10}
+              ${products.price}
             </Text>
             <Text
               style={{

@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  ToastAndroid,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 var {width} = Dimensions.get('window');
@@ -27,17 +28,27 @@ const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const loginSubmit = () => {
+  const loginSubmit = e => {
+    e.preventDefault();
     dispatch(userLogin(email, password));
   };
+
   useEffect(() => {
     if (error) {
-      alert(error);
+      ToastAndroid.showWithGravity(
+        error,
+        ToastAndroid.SHORT,
+        ToastAndroid.BOTTOM,
+      );
     }
     if (isAuthenticated) {
-      alert('Welcome To Ecommerce!');
+      ToastAndroid.showWithGravity(
+        'yeah login!',
+        ToastAndroid.SHORT,
+        ToastAndroid.BOTTOM,
+      );
     }
-  }, [dispatch, error, alert, isAuthenticated]);
+  }, [dispatch, error, isAuthenticated]);
 
   return (
     <View style={styles.container}>

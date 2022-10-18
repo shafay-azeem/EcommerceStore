@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  ToastAndroid,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 var {width} = Dimensions.get('window');
@@ -39,19 +40,27 @@ const SignUp = ({navigation}) => {
       setAvatar(image.path);
     });
   };
+
   const registerUser = () => {
     dispatch(register(name, email, password, avatar));
+    ToastAndroid.showWithGravity(
+      'Register Successfully',
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
   };
-  useEffect(() => {
-    if (error) {
-      alert(error);
-      // dispatch({ type: "clearErrors" });
-    }
 
-    if (isAuthenticated) {
-      alert('User create Done!');
-    }
-  }, [dispatch, error, alert, isAuthenticated]);
+  // useEffect(() => {
+  //   if (error) {
+  //     ToastAndroid.showWithGravity(
+  //       error,
+  //       ToastAndroid.SHORT,
+  //       ToastAndroid.BOTTOM,
+  //     );
+  //     dispatch({type: 'clearErrors'});
+  //   }
+  // }, [dispatch, error, isAuthenticated]);
+
   return (
     <View style={styles.container}>
       <View style={styles.LoginHeader}>

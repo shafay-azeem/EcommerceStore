@@ -25,16 +25,19 @@ const Order = ({navigation}) => {
   const {cartData} = useSelector(state => state.cart);
   const {user} = useSelector(state => state.user);
   const [active, setActive] = useState(1);
-  const [address, setAddress] = useState('abc street');
-  const [state, setState] = useState('Sindh');
-  const [phoneNumber, setPhoneNumber] = useState('03009237090');
-  const [countryName, setCountryName] = useState('PAK');
-  const [cityName, setCityName] = useState('Karachi');
+  const [address, setAddress] = useState('');
+  const [state, setState] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [countryName, setCountryName] = useState('');
+  const [cityName, setCityName] = useState('');
   const [subtotal, setSubtotal] = useState(0);
   const [success, setSuccess] = useState(false);
 
   // Be make sure that add it's on top
-  const totalPrice = cartData.reduce((acc, curr) => acc + curr.productPrice, 0);
+  const totalPrice = cartData.reduce(
+    (acc, curr) => acc + curr.productPrice * curr.quantity,
+    0,
+  );
 
   const paymentData = {
     amount: Math.round(totalPrice * 100),
@@ -248,7 +251,8 @@ const Confirmation = ({
                   <Text>{item.productName}</Text>
                 </View>
                 <Text style={{color: '#333', marginHorizontal: 10}}>
-                  {item.quantity} x ${item.productPrice} = ${item.productPrice}
+                  {item.quantity} x ${item.productPrice} = $
+                  {item.productPrice * item.quantity}
                 </Text>
               </View>
             );
@@ -261,10 +265,10 @@ const Confirmation = ({
             borderColor: '#00000036',
           }}>
           <Text style={{color: '#333', padding: 10, fontSize: 18}}>
-            TotalPrice:
+            Total Price:
           </Text>
           <Text style={{color: '#333', padding: 10, fontSize: 16}}>
-            ${cartData.reduce((acc, curr) => acc + curr.productPrice, 0)}
+            ${cartData.reduce((a, b) => a + b.productPrice * b.quantity, 0)}
           </Text>
         </View>
         <TouchableOpacity style={styles.button} onPress={confirmOrderHandler}>

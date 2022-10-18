@@ -31,6 +31,7 @@ import {
   getProduct,
   removeWishList,
 } from '../../../Redux/Actions/ProductAction';
+import axios from 'axios';
 
 const ProductDetails = ({route, navigation}) => {
   const [click, setClick] = useState(false);
@@ -43,8 +44,19 @@ const ProductDetails = ({route, navigation}) => {
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
+  const [review, setReview] = useState([]);
 
   const dispatch = useDispatch();
+
+  // function getReviews() {
+  //   fetch(
+  //     'https://ecommercebackend-api.herokuapp.com/api/ecommerce/reviews?id=632c0044c50dcf77fb5fe97c',
+  //   ).then(result => {
+  //     result.json().then(resp => {
+  //       setReview(resp.reviews);
+  //     });
+  //   });
+  // }
 
   // Add to WishList
   const wishListHandler = () => {
@@ -113,7 +125,7 @@ const ProductDetails = ({route, navigation}) => {
       ),
     );
     ToastAndroid.showWithGravity(
-      `${route.params?.item.stock} added to cart successfully`,
+      `${route.params?.item.name} added to cart successfully`,
       // `${route.params?.item.stock}`,
       ToastAndroid.SHORT,
       ToastAndroid.BOTTOM,
@@ -141,6 +153,7 @@ const ProductDetails = ({route, navigation}) => {
       );
     } else {
       dispatch(createReview(rating, comment, productId));
+
       ToastAndroid.showWithGravity(
         'Review added successfully',
         ToastAndroid.SHORT,
@@ -236,7 +249,7 @@ const ProductDetails = ({route, navigation}) => {
                 fontSize: 19,
                 fontWeight: '600',
               }}>
-              ${route.params?.item.price - 10}
+              ${route.params?.item.price}
             </Text>
             <Text
               style={{
@@ -342,36 +355,35 @@ const ProductDetails = ({route, navigation}) => {
               </View>
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity
-              onPress={addToCartHandler}
-              style={[
-                styles.button,
-                {
-                  backgroundColor: '#3BB77E',
-                },
-              ]}>
-              <View>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    color: '#fff',
-                    fontWeight: '600',
-                  }}>
-                  Add to Cart
-                </Text>
-              </View>
-            </TouchableOpacity>
+            <View>
+              <TouchableOpacity onPress={addToCartHandler}>
+                <LinearGradient
+                  colors={['#FFA985', '#FF5035']}
+                  style={[styles.linearGradient1, {alignSelf: 'center'}]}>
+                  <View>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        color: '#fff',
+                        fontWeight: '600',
+                      }}>
+                      Add to Cart
+                    </Text>
+                  </View>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
           )}
           <View style={styles.reviews}>
-            <Text
+            {/* <Text
               style={{
                 fontSize: 17,
                 color: '#2B2B2B',
                 fontWeight: '600',
               }}>
               Reviews
-            </Text>
-            {route.params?.item.reviews.length === 0 ? (
+            </Text> */}
+            {/* {route.params?.item.reviews.length === 0 ? (
               <Text
                 style={{
                   textAlign: 'center',
@@ -382,18 +394,18 @@ const ProductDetails = ({route, navigation}) => {
               </Text>
             ) : (
               <View>
-                {route.params?.item.reviews.map(i => (
+                {review.map(i => (
                   <View
                     key={i._id}
                     style={{
                       flexDirection: 'row',
                       alignItems: 'flex-start',
-                      paddingVertical: 5,
+                      paddingVertical: 1,
                     }}>
                     <Text
                       style={{
                         fontSize: 15,
-                        color: '#333',
+                        color: '#959595',
                         fontWeight: '700',
                         paddingLeft: 5,
                       }}>
@@ -414,14 +426,14 @@ const ProductDetails = ({route, navigation}) => {
                   </View>
                 ))}
               </View>
-            )}
+            )} */}
             <View
               style={{
                 marginTop: 10,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
-              <Text
+              {/* <Text
                 style={{
                   fontSize: 17,
                   color: '#2B2B2B',
@@ -429,8 +441,8 @@ const ProductDetails = ({route, navigation}) => {
                   paddingRight: 10,
                 }}>
                 Your Ratings*
-              </Text>
-              <TouchableOpacity onPress={() => setRating(1)}>
+              </Text> */}
+              {/* <TouchableOpacity onPress={() => setRating(1)}>
                 <Icon
                   name={rating > 0 ? 'star' : 'star-outline'}
                   color="#C68600"
@@ -469,14 +481,14 @@ const ProductDetails = ({route, navigation}) => {
                   size={18}
                   style={{marginHorizontal: 2}}
                 />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
             <View
               style={{
                 marginTop: 10,
                 height: 100,
               }}>
-              <TextInput
+              {/* <TextInput
                 keyboardType="default"
                 placeholder="Add your comment..."
                 placeholderTextColor="#333"
@@ -491,17 +503,10 @@ const ProductDetails = ({route, navigation}) => {
                   borderColor: '#0000002b',
                   height: '100%',
                 }}
-              />
+              /> */}
             </View>
+
             {/* <TouchableOpacity
-              style={{
-                alignItems: 'center',
-                marginBottom: 30,
-              }}
-              onPress={() => commentHandler(route.params?.item._id)}>
-              <Text style={styles.submitButton}>Submit</Text>
-            </TouchableOpacity > */}
-            <TouchableOpacity
               onPress={() => commentHandler(route.params?.item._id)}>
               <LinearGradient
                 colors={['#FFA985', '#FF5035']}
@@ -517,7 +522,7 @@ const ProductDetails = ({route, navigation}) => {
                   </Text>
                 </View>
               </LinearGradient>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       </View>
@@ -614,6 +619,16 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     width: '70%',
+    backgroundColor: '#3BB77E',
+    height: 50,
+    marginTop: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  linearGradient1: {
+    width: '108%',
     backgroundColor: '#3BB77E',
     height: 50,
     marginTop: 20,

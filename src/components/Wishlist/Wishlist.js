@@ -133,7 +133,7 @@ export default function Wishlist({navigation}) {
             alignItems: 'center',
           }}>
           <Text style={{color: '#333', fontSize: 20, textAlign: 'center'}}>
-            Your wishList is empty
+            Your wishlist is empty
           </Text>
         </View>
       )}

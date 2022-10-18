@@ -74,12 +74,10 @@ export const cartAddReducer = createReducer(initialState, {
   addCartSuccess: (state, action) => {
     state.loading = false;
     state.cart = action.payload;
-    console.log(state.cart, 'ooo');
   },
   addCartFail: (state, action) => {
     state.loading = false;
     state.error = action.payload;
-    console.log(state.error, 'ppp');
   },
 });
 
@@ -136,11 +134,9 @@ export const createReviewReducer = createReducer(initialState, {
   createReviewSuccess: (state, action) => {
     state.loading = false;
     state.success = action.payload;
-    console.log(state.success, 'state.success');
   },
   createReviewFail: (state, action) => {
     state.loading = false;
     state.error = action.payload;
-    console.log(state.error, 'state.error');
   },
 });

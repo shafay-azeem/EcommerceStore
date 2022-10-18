@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   ToastAndroid,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {logOutUser} from '../../../Redux/Actions/UserAction';
@@ -16,6 +16,7 @@ const height = Dimensions.get('window').height;
 
 export default function Profile({navigation}) {
   const {user, error, loading} = useSelector(state => state.user);
+  const [name, setName] = useState('');
 
   const dispatch = useDispatch();
 
@@ -35,6 +36,21 @@ export default function Profile({navigation}) {
       ToastAndroid.BOTTOM,
     );
   };
+
+  useEffect(() => {
+    getdetails();
+  }, [getdetails]);
+
+  function getdetails() {
+    fetch(
+      'https://ecommercebackend-api.herokuapp.com/api/user/loggedinuser',
+    ).then(result => {
+      result.json().then(resp => {
+        setName(resp.user);
+      });
+    });
+  }
+
   return (
     <View>
       <View style={styles.profileMain}>
@@ -67,7 +83,7 @@ export default function Profile({navigation}) {
               alignItems: 'center',
               justifyContent: 'space-between',
             }}>
-            <Text style={styles.userName}>{user.name}</Text>
+            <Text style={styles.userName}>{name.name}</Text>
             <Text
               style={{
                 marginHorizontal: 15,
@@ -99,7 +115,9 @@ export default function Profile({navigation}) {
                 marginVertical: 10,
               }}
               onPress={() =>
-                navigation.navigate('UpdateProfile', {isProfile: false})
+                navigation.navigate('UpdateProfile', {
+                  isProfile: false,
+                })
               }>
               <View
                 style={{

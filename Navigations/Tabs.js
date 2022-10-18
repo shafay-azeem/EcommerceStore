@@ -15,7 +15,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ProductDetails from '../src/components/Products/ProductDetails';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import {useEffect} from 'react';
-import {getWishList} from '../Redux/Actions/ProductAction';
+import {getCart, getWishList} from '../Redux/Actions/ProductAction';
+import {loadUser} from '../Redux/Actions/UserAction';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,7 +31,7 @@ function Tabs() {
       alert(error);
     }
     dispatch(getWishList());
-    // dispatch(getCart());
+    dispatch(getCart());
   }, [dispatch, error, wishlistData]);
 
   return (
@@ -97,7 +98,7 @@ function Tabs() {
               }}
             />
             <Tab.Screen
-              name="wishlist"
+              name="Wishlist"
               component={WishListScreen}
               options={{
                 tabBarBadge: wishlistData?.length,
@@ -122,7 +123,7 @@ function Tabs() {
               }}
             />
             <Tab.Screen
-              name="cart"
+              name="Cart"
               component={CartScreen}
               options={{
                 tabBarBadge: cartData?.length,
@@ -147,7 +148,7 @@ function Tabs() {
               }}
             />
             <Tab.Screen
-              name="profile"
+              name="Profile"
               component={ProfileScreen}
               options={{
                 tabBarIcon: ({focused}) => (

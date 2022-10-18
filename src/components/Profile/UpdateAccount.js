@@ -12,7 +12,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {TextInput} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {updateProfile} from '../../../Redux/Actions/UserAction';
+import {loadUser, updateProfile} from '../../../Redux/Actions/UserAction';
 import LinearGradient from 'react-native-linear-gradient';
 import axios from 'axios';
 var {width} = Dimensions.get('window');
@@ -101,7 +101,7 @@ export default function UpdateAccount({navigation, route}) {
   return (
     <View>
       <View style={styles.updateProfileTop}>
-        <TouchableOpacity onPress={() => navigation.navigate('profile')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Icon name="arrow-back" color="#333" size={30} />
         </TouchableOpacity>
       </View>
